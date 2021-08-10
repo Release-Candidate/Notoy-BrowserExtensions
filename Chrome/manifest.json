@@ -2,5 +2,11 @@
     "name": "Notoy-Chrome",
     "description": "Notoy Chrome browser extension.",
     "version": "0.9.0",
-    "manifest_version": 3
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "storage"
+    ]
 }
