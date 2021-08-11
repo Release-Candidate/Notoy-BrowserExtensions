@@ -29,4 +29,12 @@ chrome.storage.sync.get("tabTitle", ({ tabTitle }) => {
 
 saveButton.addEventListener("click", async () => {
     descriptionText.value = "BLASD"
+
+    const data = new Blob(["array of", " parts of ", "text file"], { type: "text/plain" });
+    const dataUrl = URL.createObjectURL(data);
+    chrome.downloads.download({
+        url: dataUrl,
+        filename: titleText.value + ".txt",
+        saveAs: true,
+    });
 })
