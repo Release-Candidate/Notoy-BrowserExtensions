@@ -2,5 +2,36 @@
     "manifest_version": 2,
     "name": "Notoy-Firefox",
     "version": "0.9.0",
-    "description": "Notoy Firefox browser extension."
+    "description": "Notoy Firefox browser extension.",
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "permissions": [
+        "storage",
+        "tabs",
+        "downloads"
+    ],
+    "icons": {
+        "16": "./images/icon_16.png",
+        "32": "./images/icon_32.png",
+        "48": "./images/icon_48.png",
+        "96": "./images/icon_96.png"
+    },
+    "browser_action": {
+        "default_title": "NoToy",
+        "default_popup": "popup.html",
+        "browser_style": true,
+        "default_icon": {
+            "16": "./images/icon_transp_16.png",
+            "32": "./images/icon_transp_32.png",
+            "48": "./images/icon_transp_48.png",
+            "128": "./images/icon_transp_128.png"
+        }
+    },
+    "options_ui": {
+        "page": "options.html",
+        "browser_style": true
+    }
 }
