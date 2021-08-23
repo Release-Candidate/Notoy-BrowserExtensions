@@ -7,6 +7,12 @@
 //
 //=============================================================================
 
+// Unicode regex for 'not a letter'
+const unicodeNotWordRegex = /(\P{L})+/giu
+
+// Markdown MIME type.
+const markdownMIME = "text/markdown"
+
 // Title input field in the extension's popup.
 let titleText = document.getElementById("titleText")
 
@@ -28,13 +34,22 @@ chrome.storage.sync.get("tabTitle", ({ tabTitle }) => {
 })
 
 saveButton.addEventListener("click", async () => {
-    descriptionText.value = "BLASD"
-
-    const data = new Blob(["array of", " parts of ", "text file"], { type: "text/plain" });
+    const data = getMarkdown(pageURL.value, titleText.value, descriptionText.value)
     const dataUrl = URL.createObjectURL(data);
     chrome.downloads.download({
         url: dataUrl,
-        filename: titleText.value + ".txt",
+        filename: titleText.value.replace(unicodeNotWordRegex, '_') + ".md",
         saveAs: true,
     });
 })
+
+function getMarkdown(url, title, description) {
+    const markdownString = `# ${title}
+
+    [${title}](${url})
+
+    ${description}
+    `
+
+    return new Blob([markdownString, "HUGO"], { type: markdownMIME })
+}
