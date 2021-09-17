@@ -6,6 +6,7 @@
 // Date:     10.Aug.2021
 //
 //=============================================================================
+/* eslint-disable no-undef */
 
 let tabTitle = "Title"
 let tabUrl = "about:blank"

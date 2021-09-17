@@ -6,6 +6,8 @@
 // Date:     11.Aug.2021
 //
 //=============================================================================
+// `chrome` is unknown to eslint
+/* eslint-disable no-undef */
 
 // Unicode regex for 'not a letter'
 const unicodeNotWordRegex = /(\P{L})+/giu
@@ -34,13 +36,17 @@ chrome.storage.sync.get("tabTitle", ({ tabTitle }) => {
 })
 
 saveButton.addEventListener("click", async () => {
-    const data = getMarkdown(pageURL.value, titleText.value, descriptionText.value)
-    const dataUrl = URL.createObjectURL(data);
+    const data = getMarkdown(
+        pageURL.value,
+        titleText.value,
+        descriptionText.value
+    )
+    const dataUrl = URL.createObjectURL(data)
     chrome.downloads.download({
         url: dataUrl,
-        filename: titleText.value.replace(unicodeNotWordRegex, '_') + ".md",
+        filename: titleText.value.replace(unicodeNotWordRegex, "_") + ".md",
         saveAs: true,
-    });
+    })
 })
 
 function getMarkdown(url, title, description) {
