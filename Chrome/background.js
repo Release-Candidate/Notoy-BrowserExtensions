@@ -12,28 +12,6 @@ let tabTitle = "Title"
 let tabUrl = "about:blank"
 
 /**
- * Function that is injected into the current tab to get information about the
- * content, like the description in `<meta name="description" ...>`.
- */
-function getContentInfo() {
-    let descriptionText = ""
-    let keyWords = ""
-
-    const desc = document.querySelector('meta[name="description"]')
-    if (desc !== null) {
-        descriptionText = desc.getAttribute("content")
-    }
-
-    const tags = document.querySelector('meta[name="keywords"]')
-    if (tags !== null) {
-        keyWords = tags.getAttribute("content")
-    }
-
-    chrome.storage.sync.set({ descriptionText })
-    chrome.storage.sync.set({ keyWords })
-}
-
-/**
  * Initialization of the extension.
  */
 chrome.runtime.onInstalled.addListener(() => {
@@ -62,13 +40,35 @@ chrome.tabs.onActivated.addListener(() => {
                 },
                 () => {
                     if (chrome.runtime.lastError) {
-                        let descriptionText = ""
-                        let keyWords = ""
-                        chrome.storage.sync.set({ descriptionText })
-                        chrome.storage.sync.set({ keyWords })
+                        let tabDescription = ""
+                        let tabKeywords = ""
+                        chrome.storage.sync.set({ tabDescription })
+                        chrome.storage.sync.set({ tabKeywords })
                     }
                 }
             )
         }
     )
 })
+
+/**
+ * Function that is injected into the current tab to get information about the
+ * content, like the description in `<meta name="description" ...>`.
+ */
+function getContentInfo() {
+    let tabDescription = ""
+    let tabKeywords = ""
+
+    const desc = document.querySelector('meta[name="description"]')
+    if (desc !== null) {
+        tabDescription = desc.getAttribute("content")
+    }
+
+    const tags = document.querySelector('meta[name="keywords"]')
+    if (tags !== null) {
+        tabKeywords = tags.getAttribute("content")
+    }
+
+    chrome.storage.sync.set({ tabDescription })
+    chrome.storage.sync.set({ tabKeywords })
+}

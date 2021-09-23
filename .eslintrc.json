@@ -74,7 +74,13 @@
         "id-length": "error",
         "id-match": "error",
         "implicit-arrow-linebreak": "error",
-        "indent": "error",
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
         "init-declarations": "error",
         "jsx-quotes": "error",
         "key-spacing": "error",
