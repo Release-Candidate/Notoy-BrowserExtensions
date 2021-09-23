@@ -6,3 +6,10 @@
 // Date:     16.Sep.2021
 //
 //=============================================================================
+
+// Valid document formats to save.
+const formats = {
+    MARKDOWN: "markdown",
+    ORG_MODE: "orgMode",
+    TEXT: "text",
+}

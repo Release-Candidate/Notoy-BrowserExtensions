@@ -10,12 +10,20 @@
 
 let tabTitle = "Title"
 let tabUrl = "about:blank"
+let tabText = ""
 
 /**
  * Initialization of the extension.
  */
 chrome.runtime.onInstalled.addListener(() => {
-    // Init goes here
+    let tabDescription = ""
+    let tabKeywords = ""
+
+    chrome.storage.sync.set({ tabUrl })
+    chrome.storage.sync.set({ tabTitle })
+    chrome.storage.sync.set({ tabDescription })
+    chrome.storage.sync.set({ tabKeywords })
+    chrome.storage.sync.set({ tabText })
 })
 
 /**
@@ -32,6 +40,7 @@ chrome.tabs.onActivated.addListener(() => {
 
             chrome.storage.sync.set({ tabUrl })
             chrome.storage.sync.set({ tabTitle })
+            chrome.storage.sync.set({ tabText })
 
             chrome.scripting.executeScript(
                 {

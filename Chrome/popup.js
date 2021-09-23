@@ -49,26 +49,38 @@ const fileInfo = {
     },
 }
 
+// The format of the document to generate.
+let documentFormat = fileInfo.MARKDOWN
+
 // Unicode regex for 'not a letter'
 const unicodeNotWordRegex = /(\P{L})+/giu
 
 // Title input field in the extension's popup.
 let titleText = document.getElementById("titleText")
+titleText.addEventListener("input", async () => {
+    chrome.storage.sync.set({ tabTitle: titleText.value })
+})
 
 // URL input field in the extension's popup.
 let pageURL = document.getElementById("pageURL")
 
 // Keywords input field in the extension's popup.
 let keyWords = document.getElementById("keyWords")
+keyWords.addEventListener("input", async () => {
+    chrome.storage.sync.set({ tabKeywords: keyWords.value })
+})
 
 // Description input field in the extension's popup.
 let descriptionText = document.getElementById("descriptionText")
+descriptionText.addEventListener("input", async () => {
+    chrome.storage.sync.set({ tabDescription: descriptionText.value })
+})
 
 // Description input field in the extension's popup.
 let longText = document.getElementById("longText")
-
-// The format of the document to generate.
-let documentFormat = fileInfo.MARKDOWN
+longText.addEventListener("input", async () => {
+    chrome.storage.sync.set({ tabText: longText.value })
+})
 
 // Save button in the extension's popup.
 let saveButton = document.getElementById("saveButton")
@@ -87,6 +99,10 @@ chrome.storage.sync.get("tabKeywords", ({ tabKeywords }) => {
 
 chrome.storage.sync.get("tabDescription", ({ tabDescription }) => {
     descriptionText.value = tabDescription
+})
+
+chrome.storage.sync.get("tabText", ({ tabText }) => {
+    longText.value = tabText
 })
 
 chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
