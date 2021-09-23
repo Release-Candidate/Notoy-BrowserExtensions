@@ -178,7 +178,7 @@ ${tabData.description}
 function getOrgMode(tabData) {
     return `# ${tabData.title}
 
-    Keywords: ${tabData.keywords}
+Keywords: ${tabData.keywords}
 
 ${tabData.description}
 [${tabData.title}](${tabData.url})
