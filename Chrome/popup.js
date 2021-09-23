@@ -22,7 +22,10 @@ let titleText = document.getElementById("titleText")
 let pageURL = document.getElementById("pageURL")
 
 // Description input field in the extension's popup.
-let descriptionText = document.getElementById("descriptionText")
+let descriptionText1 = document.getElementById("descriptionText")
+
+// Keywords input field in the extension's popup.
+let keyWords1 = document.getElementById("keyWords")
 
 // Save button in the extension's popup.
 let saveButton = document.getElementById("saveButton")
@@ -35,11 +38,19 @@ chrome.storage.sync.get("tabTitle", ({ tabTitle }) => {
     titleText.value = tabTitle
 })
 
+chrome.storage.sync.get("descriptionText", ({ descriptionText }) => {
+    descriptionText1.value = descriptionText
+})
+
+chrome.storage.sync.get("keyWords", ({ keyWords }) => {
+    keyWords1.value = keyWords
+})
+
 saveButton.addEventListener("click", async () => {
     const data = getMarkdown(
         pageURL.value,
         titleText.value,
-        descriptionText.value
+        descriptionText1.value
     )
     const dataUrl = URL.createObjectURL(data)
     chrome.downloads.download({

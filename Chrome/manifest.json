@@ -10,7 +10,12 @@
     "permissions": [
         "storage",
         "tabs",
+        "scripting",
         "downloads"
+    ],
+    "host_permissions": [
+        "http://*/",
+        "https://*/"
     ],
     "icons": {
         "16": "./images/icon_16.png",
