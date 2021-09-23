@@ -19,14 +19,14 @@ const formats = {
 // File suffixes of the document formats.
 const fileSuffix = {
     MARKDOWN: ".md",
-    ORG_MODE: ".",
+    ORG_MODE: ".org",
     TEXT: ".txt",
 }
 
 // MIME type of the various document formats.
 const mimeTypes = {
     MARKDOWN: "text/markdown",
-    ORG_MODE: "text/plain",
+    ORG_MODE: "text/org",
     TEXT: "text/plain",
 }
 
@@ -58,11 +58,14 @@ let titleText = document.getElementById("titleText")
 // URL input field in the extension's popup.
 let pageURL = document.getElementById("pageURL")
 
+// Keywords input field in the extension's popup.
+let keyWords = document.getElementById("keyWords")
+
 // Description input field in the extension's popup.
 let descriptionText = document.getElementById("descriptionText")
 
-// Keywords input field in the extension's popup.
-let keyWords = document.getElementById("keyWords")
+// Description input field in the extension's popup.
+let longText = document.getElementById("longText")
 
 // The format of the document to generate.
 let documentFormat = fileInfo.MARKDOWN
@@ -78,12 +81,12 @@ chrome.storage.sync.get("tabTitle", ({ tabTitle }) => {
     titleText.value = tabTitle
 })
 
-chrome.storage.sync.get("tabDescription", ({ tabDescription }) => {
-    descriptionText.value = tabDescription
-})
-
 chrome.storage.sync.get("tabKeywords", ({ tabKeywords }) => {
     keyWords.value = tabKeywords
+})
+
+chrome.storage.sync.get("tabDescription", ({ tabDescription }) => {
+    descriptionText.value = tabDescription
 })
 
 chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
@@ -110,8 +113,10 @@ saveButton.addEventListener("click", async () => {
         title: titleText.value,
         keywords: keyWords.value,
         description: descriptionText.value,
+        text: longText.value,
         format: documentFormat,
     }
+
     const data = getData(tabData)
     const dataUrl = URL.createObjectURL(data)
     chrome.downloads.download({
@@ -165,6 +170,8 @@ Keywords: ${tabData.keywords}
 
 ${tabData.description}
 [${tabData.title}](${tabData.url})
+
+${tabData.text}
 `
 }
 
@@ -176,12 +183,17 @@ ${tabData.description}
  * @returns The given data as a Org-Mode formatted `Blob`, suitable to download.
  */
 function getOrgMode(tabData) {
-    return `# ${tabData.title}
+    return `#+title:  ${tabData.title}
+#+date:   ${getDateString()}
+
+* ${tabData.title}
 
 Keywords: ${tabData.keywords}
 
 ${tabData.description}
-[${tabData.title}](${tabData.url})
+[[${tabData.url}][${tabData.title}]]
+
+${tabData.text}
 `
 }
 
@@ -195,9 +207,35 @@ ${tabData.description}
 function getPlainText(tabData) {
     return `${tabData.title}
 
+${getDateString()}
+
 Keywords: ${tabData.keywords}
 
 ${tabData.description}
 ${tabData.url}
+
+${tabData.text}
 `
+}
+
+/**
+ * Return the current date in ISO format, "YYYY-MM-DD".
+ *
+ * @returns The current date in ISO format, "YYYY-MM-DD".
+ */
+function getDateString() {
+    function pad0s(n) {
+        // eslint-disable-next-line no-magic-numbers
+        return n < 10 ? "0" + n : n
+    }
+    const today = new Date()
+
+    return (
+        today.getFullYear() +
+        "-" +
+        // eslint-disable-next-line no-magic-numbers
+        pad0s(today.getMonth() + 1) +
+        "-" +
+        pad0s(today.getDate())
+    )
 }

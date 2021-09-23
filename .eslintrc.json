@@ -71,7 +71,13 @@
         "grouped-accessor-pairs": "error",
         "guard-for-in": "error",
         "id-denylist": "error",
-        "id-length": "error",
+        "id-length": [
+            "error",
+            {
+                "min": 1,
+                "max": 50
+            }
+        ],
         "id-match": "error",
         "implicit-arrow-linebreak": "error",
         "indent": [
@@ -105,7 +111,7 @@
             "error",
             "separate-lines"
         ],
-        "multiline-ternary": "error",
+        "multiline-ternary": ["error", "always-multiline"],
         "new-cap": "error",
         "new-parens": "error",
         "newline-per-chained-call": "error",
@@ -172,7 +178,7 @@
         "no-shadow": "error",
         "no-tabs": "error",
         "no-template-curly-in-string": "error",
-        "no-ternary": "error",
+        "no-ternary": "off",
         "no-throw-literal": "error",
         "no-trailing-spaces": "error",
         "no-undef-init": "error",
