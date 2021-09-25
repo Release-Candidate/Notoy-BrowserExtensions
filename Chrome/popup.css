@@ -1,0 +1,68 @@
+body {
+    min-width: 760px;
+    min-height: 560px;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    font-size: medium;
+    height: 100%;
+}
+
+p {
+    margin-bottom: 5px;
+    margin-top: 1px;
+}
+
+h3 {
+    background-color: aquamarine;
+}
+
+#header {
+    color: blue;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 95%;
+    background-color: darksalmon;
+}
+
+#title {
+    color: green;
+}
+
+input[type="url"] {
+    width: 95%;
+    background-color: hotpink;
+}
+
+#url {
+    color: blueviolet;
+}
+
+#keywords {
+    color: red;
+}
+
+textarea {
+    min-width: 95%;
+    max-width: 95%;
+    background-color: bisque;
+}
+
+#description {
+    color: chocolate;
+}
+
+#text {
+    color: aqua;
+    height: 100%;
+    background-color: chartreuse;
+}
+
+#text textarea {
+    height: 100%;
+}
+
+#save {
+    background-color: gold;
+}

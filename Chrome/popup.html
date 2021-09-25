@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="./popup.css" />
+    </head>
 
-<head>
-    <link rel="stylesheet" href="./popup.css">
-</head>
-
-<body>
-    <h2>Save link to this website</h2>
-    <label>Title:<input type="text" min="50" id="titleText"></label>
-    <label>URL:<input type="text" min="50" id="pageURL"></label>
-    <label>Keywords:<input type="text" min="50" id="keyWords"></label>
-    <label>Short description:<textarea rows="5" cols="60" id="descriptionText"></textarea></label>
-    <label>Long text:<textarea rows="10" cols="60" id="longText"></textarea></label>
-    <button id="saveButton">Save</button>
-    <script src="./popup.js"></script>
-</body>
-
+    <body>
+        <h3 id="header"><img src="./images/icon_transp_32.png"> Save link to this website</h2>
+        <p id="title">
+            <label for="titleText">
+                Title:
+                <br />
+                <input type="text" min="50" id="titleText" />
+            </label>
+        </p>
+        <p id="url">
+            <label for="pageURL">
+                URL:
+                <br />
+                <input type="url" min="50" id="pageURL" />
+            </label>
+        </p>
+        <p id="keywords">
+            <label for="keyWords">
+                Keywords:
+                <br />
+                <input type="text" min="50" id="keyWords" />
+            </label>
+        </p>
+        <p id="description">
+            <label for="descriptionText">
+                Short description:
+                <br />
+                <textarea rows="5" cols="60" id="descriptionText"></textarea>
+            </label>
+        </p>
+        <p id="text">
+            <label for="longText">
+                Long text:
+                <br />
+                <textarea rows="10" cols="60" id="longText"></textarea>
+            </label>
+        </p>
+        <p id="save">
+            <button id="saveButton">Save</button>
+        </p>
+        <script src="./popup.js"></script>
+    </body>
 </html>
