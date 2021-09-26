@@ -8,7 +8,6 @@ html {
     margin-left: 20px;
     padding: 0px;
     box-sizing: border-box;
-    background-color: darkmagenta;
 }
 
 *,
@@ -25,11 +24,11 @@ body {
     font-size: medium;
     width: 100%;
     height: 100%;
-    background-color: honeydew;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
+    gap: 0.5em 0.5em;
 }
 
 body > *,
@@ -45,53 +44,26 @@ input {
 }
 
 div {
-    background-color: darkolivegreen;
     flex: 0 1 auto;
 }
 
 h3 {
-    background-color: aquamarine;
+    text-align: start;
+    margin-top: 0.5em;
 }
 
-#header {
-    color: blue;
-    text-align: center;
-}
-
-input[type="text"] {
-    background-color: darksalmon;
-}
-
-#title {
-    color: green;
-}
-
-input[type="url"] {
-    background-color: hotpink;
-}
-
-#url {
-    color: blueviolet;
-}
-
-#keywords {
-    color: red;
+h3 > img {
+    vertical-align: middle;
 }
 
 textarea {
     min-width: 100%;
     max-width: 100%;
-    background-color: bisque;
-}
-
-#description {
-    color: chocolate;
 }
 
 #text {
     height: 100%;
-    color: aqua;
-    background-color: chartreuse;
+
     flex: 1 1 auto;
 }
 
@@ -100,5 +72,5 @@ textarea {
 }
 
 #save {
-    background-color: gold;
+    margin-bottom: 1em;
 }

@@ -1,0 +1,37 @@
+html {
+    padding-right: 10vw;
+    padding-left: 10vw;
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+    margin: 0px;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0px;
+    padding: 2em;
+    width: fit-content;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.5em 0.5em;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+#header > img {
+    vertical-align: middle;
+}
