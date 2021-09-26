@@ -1,15 +1,52 @@
-body {
-    min-width: 760px;
-    min-height: 560px;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
-    font-size: medium;
-    height: 100%;
+/* Chrome adds space for a scroll bar to the right of the popup, so don't
+use the maximum 800px! */
+html {
+    width: 740px; /* 740px + margins + scrollbar width */
+    height: 600px;
+    margin: 0px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 0px;
+    box-sizing: border-box;
+    background-color: darkmagenta;
 }
 
-p {
-    margin-bottom: 5px;
-    margin-top: 1px;
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding: 0px;
+    font-size: medium;
+    width: 100%;
+    height: 100%;
+    background-color: honeydew;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+body > *,
+body > *::before,
+body > *::after,
+input {
+    margin: 0px;
+}
+
+/* Input field width is not set by flexbox' `stretch` */
+input {
+    width: 100%;
+}
+
+div {
+    background-color: darkolivegreen;
+    flex: 0 1 auto;
 }
 
 h3 {
@@ -22,7 +59,6 @@ h3 {
 }
 
 input[type="text"] {
-    width: 95%;
     background-color: darksalmon;
 }
 
@@ -31,7 +67,6 @@ input[type="text"] {
 }
 
 input[type="url"] {
-    width: 95%;
     background-color: hotpink;
 }
 
@@ -44,8 +79,8 @@ input[type="url"] {
 }
 
 textarea {
-    min-width: 95%;
-    max-width: 95%;
+    min-width: 100%;
+    max-width: 100%;
     background-color: bisque;
 }
 
@@ -54,9 +89,10 @@ textarea {
 }
 
 #text {
+    height: ;
     color: aqua;
-    height: 100%;
     background-color: chartreuse;
+    flex: 1 1 auto;
 }
 
 #text textarea {
