@@ -10,19 +10,76 @@
             <img src="./images/icon.svg" height="48" />
             Settings
         </h1>
-        <div id="buttonDiv"></div>
-        <div>
-            <p>Add a timestamp to the note?</p>
+        <div id="format">
+            <fieldset>
+                <legend>Note file format</legend>
+
+                <label for="markdown">
+                    <input
+                        type="radio"
+                        id="markdown"
+                        name="formatRadio"
+                        value="markdown"
+                        checked />
+                    Markdown
+                </label>
+                <label for="orgMode">
+                    <input
+                        type="radio"
+                        id="orgMode"
+                        name="formatRadio"
+                        value="orgMode" />
+                    Org-Mode (Emacs)
+                </label>
+                <label for="text">
+                    <input
+                        type="radio"
+                        id="text"
+                        name="formatRadio"
+                        value="text" />
+                    Org-Mode (Emacs)
+                </label>
+            </fieldset>
         </div>
-        <div id="selectorDiv"></div>
-        <div>
-            <p>Set note file format - Markdown, Org-Mode, Plain Text</p>
+
+        <div id="timestamp">
+            <hr />
+            <label for="timestampInput">
+                Add a timestamp to the note?
+                <input type="checkbox" id="timestampInput" checked />
+            </label>
         </div>
-        <div>
-            <p>Set link format - Markdown, Wiki, Plain Text</p>
+
+        <div id="yaml">
+            <hr />
+            <label for="yamlFrontMatter">
+                Add YAML front matter (YAML metadata block for Pandoc)?
+                <input type="checkbox" id="yamlFrontMatter" />
+            </label>
         </div>
-        <div>
-            <p>Add YAML front matter (YAML metadata block for Pandoc)?</p>
+        <!-- Use Markdown or Wiki-style link for URL? -->
+        <div id="preview">
+            <hr />
+            Example:
+
+            <p># Release-Candidate/Notoy-BrowserExtensions</p>
+            <p>2021-09-26</p>
+            <p>Keywords: #notoy</p>
+            <p>
+                Browser extensions to save the current pages URL with comments
+                to a Markdown, Org-Mode or plain text file and/or communicate
+                with the Notoy note app -
+                Release-Candidate/Notoy-BrowserExtensions: Browser extensions to
+                save the current pages URL with comments to a Markdown, Org-Mode
+                or plain text file and/or communicate with the Notoy note app
+                <br />
+                [https://github.com/Release-Candidate/Notoy-BrowserExtensions](https://github.com/Release-Candidate/Notoy-BrowserExtensions)
+            </p>
+            <p>
+                This is the long text for the example.
+                <br />
+                I don't have much to say.
+            </p>
         </div>
     </body>
     <script src="options.js"></script>
