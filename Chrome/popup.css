@@ -89,14 +89,14 @@ textarea {
 }
 
 #text {
-    height: ;
+    height: 100%;
     color: aqua;
     background-color: chartreuse;
     flex: 1 1 auto;
 }
 
 #text textarea {
-    height: 100%;
+    height: calc(100% - 2em);
 }
 
 #save {
