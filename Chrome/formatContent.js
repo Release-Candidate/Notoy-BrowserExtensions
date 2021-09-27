@@ -7,6 +7,14 @@
 //
 //=============================================================================
 
+// Valid document formats to save.
+// eslint-disable-next-line no-unused-vars
+const formats = {
+    MARKDOWN: "markdown",
+    ORG_MODE: "orgMode",
+    TEXT: "text",
+}
+
 /**
  * Return the given `tabData` as a Markdown formatted `Blob` with MIME
  * 'text/markdown'.

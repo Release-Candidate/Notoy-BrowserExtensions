@@ -9,13 +9,6 @@
 // `chrome` is unknown to eslint
 /* eslint-disable no-undef */
 
-// Valid document formats to save.
-const formats = {
-    MARKDOWN: "markdown",
-    ORG_MODE: "orgMode",
-    TEXT: "text",
-}
-
 // File suffixes of the document formats.
 const fileSuffix = {
     MARKDOWN: ".md",

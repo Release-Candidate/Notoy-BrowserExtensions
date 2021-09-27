@@ -9,14 +9,12 @@
 // eslint doesn't know `chrome`
 /* eslint-disable no-undef */
 
-// Valid document formats to save.
-const formats = {
-    MARKDOWN: "markdown",
-    ORG_MODE: "orgMode",
-    TEXT: "text",
-}
+let previewFormat = formats.MARKDOWN
+let previewUseYaml = false
+let previewUseTimestamp = true
 
 chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
+    previewFormat = optionFormat
     let markdownCheck = document.getElementById("markdown")
     let orgModeCheck = document.getElementById("orgMode")
     let textCheck = document.getElementById("text")
@@ -46,34 +44,48 @@ let formatParent = document.getElementById("formatParent")
 formatParent.addEventListener("change", async (event) => {
     const optionFormat = event.target.value
     chrome.storage.sync.set({ optionFormat })
-    setPreview({ addYaml: true, addTimestamp: true, format: optionFormat })
+    previewFormat = optionFormat
+    setPreview({
+        addYaml: previewUseYaml,
+        addTimestamp: previewUseTimestamp,
+        format: previewFormat,
+    })
 })
 
 let useTimestamp = document.getElementById("timestampInput")
 chrome.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
     useTimestamp.checked = optionTimestamp
+    previewUseTimestamp = optionTimestamp
 })
 useTimestamp.addEventListener("click", async (event) => {
     const optionTimestamp = event.target.checked
     chrome.storage.sync.set({ optionTimestamp })
+    previewUseTimestamp = optionTimestamp
     setPreview({
-        addYaml: true,
-        addTimestamp: optionTimestamp,
-        format: formats.MARKDOWN,
+        addYaml: previewUseYaml,
+        addTimestamp: previewUseTimestamp,
+        format: previewFormat,
     })
 })
 
 let useYamlFrontMatter = document.getElementById("yamlFrontMatter")
 chrome.storage.sync.get("optionYaml", ({ optionYaml }) => {
     useYamlFrontMatter.checked = optionYaml
+    previewUseYaml = optionYaml
+    setPreview({
+        addYaml: previewUseYaml,
+        addTimestamp: previewUseTimestamp,
+        format: previewFormat,
+    })
 })
 useYamlFrontMatter.addEventListener("click", async (event) => {
     const optionYaml = event.target.checked
     chrome.storage.sync.set({ optionYaml })
+    previewUseYaml = optionYaml
     setPreview({
-        addYaml: optionYaml,
-        addTimestamp: true,
-        format: formats.TEXT,
+        addYaml: previewUseYaml,
+        addTimestamp: previewUseTimestamp,
+        format: previewFormat,
     })
 })
 
