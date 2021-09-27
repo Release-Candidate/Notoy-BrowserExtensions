@@ -105,6 +105,16 @@ chrome.storage.sync.get("tabText", ({ tabText }) => {
     longText.value = tabText
 })
 
+let addTimestamp = false
+chrome.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
+    addTimestamp = optionTimestamp
+})
+
+let addYaml = false
+chrome.storage.sync.get("optionYaml", ({ optionYaml }) => {
+    addYaml = optionYaml
+})
+
 chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
     switch (optionFormat) {
         case formats.MARKDOWN:
@@ -130,6 +140,8 @@ saveButton.addEventListener("click", async () => {
         keywords: keyWords.value,
         description: descriptionText.value,
         text: longText.value,
+        addTimestamp,
+        addYaml,
         format: documentFormat,
     }
 
@@ -170,88 +182,4 @@ function getData(tabData) {
     }
 
     return new Blob([documentString], { type: tabData.format.mime })
-}
-
-/**
- * Return the given `tabData` as a Markdown formatted `Blob` with MIME
- * 'text/markdown'.
- *
- * @param {*} tabData The data to put into the Markdown document.
- * @returns The given data as a Markdown formatted `Blob`, suitable to download.
- */
-function getMarkdown(tabData) {
-    return `# ${tabData.title}
-
-Keywords: ${tabData.keywords}
-
-${tabData.description}
-[${tabData.title}](${tabData.url})
-
-${tabData.text}
-`
-}
-
-/**
- * Return the given `tabData` as a Org-Mode formatted `Blob` with MIME
- * 'text/markdown'.
- *
- * @param {*} tabData The data to put into the Org-Mode document.
- * @returns The given data as a Org-Mode formatted `Blob`, suitable to download.
- */
-function getOrgMode(tabData) {
-    return `#+title:  ${tabData.title}
-#+date:   ${getDateString()}
-
-* ${tabData.title}
-
-Keywords: ${tabData.keywords}
-
-${tabData.description}
-[[${tabData.url}][${tabData.title}]]
-
-${tabData.text}
-`
-}
-
-/**
- * Return the given `tabData` as a 'plain text' formatted `Blob` with MIME
- * 'text/markdown'.
- *
- * @param {*} tabData The data to put into the 'plain text' document.
- * @returns The given data as a 'plain text' formatted `Blob`, suitable to download.
- */
-function getPlainText(tabData) {
-    return `${tabData.title}
-
-${getDateString()}
-
-Keywords: ${tabData.keywords}
-
-${tabData.description}
-${tabData.url}
-
-${tabData.text}
-`
-}
-
-/**
- * Return the current date in ISO format, "YYYY-MM-DD".
- *
- * @returns The current date in ISO format, "YYYY-MM-DD".
- */
-function getDateString() {
-    function pad0s(n) {
-        // eslint-disable-next-line no-magic-numbers
-        return n < 10 ? "0" + n : n
-    }
-    const today = new Date()
-
-    return (
-        today.getFullYear() +
-        "-" +
-        // eslint-disable-next-line no-magic-numbers
-        pad0s(today.getMonth() + 1) +
-        "-" +
-        pad0s(today.getDate())
-    )
 }

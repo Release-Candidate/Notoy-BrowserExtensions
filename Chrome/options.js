@@ -46,6 +46,7 @@ let formatParent = document.getElementById("formatParent")
 formatParent.addEventListener("change", async (event) => {
     const optionFormat = event.target.value
     chrome.storage.sync.set({ optionFormat })
+    setPreview({ addYaml: true, addTimestamp: true, format: optionFormat })
 })
 
 let useTimestamp = document.getElementById("timestampInput")
@@ -55,6 +56,11 @@ chrome.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
 useTimestamp.addEventListener("click", async (event) => {
     const optionTimestamp = event.target.checked
     chrome.storage.sync.set({ optionTimestamp })
+    setPreview({
+        addYaml: true,
+        addTimestamp: optionTimestamp,
+        format: formats.MARKDOWN,
+    })
 })
 
 let useYamlFrontMatter = document.getElementById("yamlFrontMatter")
@@ -64,25 +70,65 @@ chrome.storage.sync.get("optionYaml", ({ optionYaml }) => {
 useYamlFrontMatter.addEventListener("click", async (event) => {
     const optionYaml = event.target.checked
     chrome.storage.sync.set({ optionYaml })
+    setPreview({
+        addYaml: optionYaml,
+        addTimestamp: true,
+        format: formats.TEXT,
+    })
 })
 
-let previewPart = document.getElementById("preview")
-previewPart.innerHTML = `<p># Release-Candidate/Notoy-BrowserExtensions</p>
-                <p>2021-09-29</p>
-                <p>Keywords: #notoy</p>
-                <p>
-                    Browser extensions to save the current pages URL with
-                    comments to a Markdown, Org-Mode or plain text file and/or
-                    communicate with the Notoy note app -
-                    Release-Candidate/Notoy-BrowserExtensions: Browser
-                    extensions to save the current pages URL with comments to a
-                    Markdown, Org-Mode or plain text file and/or communicate
-                    with the Notoy note app
-                    <br />
-                    [https://github.com/Release-Candidate/Notoy-BrowserExtensions](https://github.com/Release-Candidate/Notoy-BrowserExtensions)
-                </p>
-                <p>
-                    This is the long text for the example.
-                    <br />
-                    I don't have much to say.
-                </p>`
+/**
+ * Function to fill the preview part of the option page with an example of a
+ * note formatted with the given options.
+ *
+ * @param {*} addYaml
+ * @param {*} addTimestamp
+ * @param {*} format
+ */
+function setPreview({ addYaml, addTimestamp, format }) {
+    let previewText = ""
+
+    switch (format) {
+        case formats.ORG_MODE:
+            previewText = getOrgMode({
+                url: "https://github.com/Release-Candidate/Notoy-BrowserExtensions",
+                title: "Release-Candidate/Notoy-BrowserExtensions",
+                keywords: "#notoy",
+                description:
+                    "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app",
+                text: "This is the long text for the example.<br />I don't have much to say.",
+                addTimestamp,
+            })
+            break
+
+        case formats.TEXT:
+            previewText = getPlainText({
+                url: "https://github.com/Release-Candidate/Notoy-BrowserExtensions",
+                title: "Release-Candidate/Notoy-BrowserExtensions",
+                keywords: "#notoy",
+                description:
+                    "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app",
+                text: "This is the long text for the example.<br />I don't have much to say.",
+                addTimestamp,
+                addYaml,
+            })
+            break
+
+        // Fall through
+        case formats.MARKDOWN:
+        default:
+            previewText = getMarkdown({
+                url: "https://github.com/Release-Candidate/Notoy-BrowserExtensions",
+                title: "Release-Candidate/Notoy-BrowserExtensions",
+                keywords: "#notoy",
+                description:
+                    "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app",
+                text: "This is the long text for the example.<br />I don't have much to say.",
+                addTimestamp,
+                addYaml,
+            })
+    }
+
+    let previewPart = document.getElementById("preview")
+    previewPart.innerHTML = previewText.split("\n").join("<br/>")
+}
