@@ -58,7 +58,7 @@ fieldset {
     margin-left: 5em;
 }
 
-#preview > p {
-    color: grey;
+#preview {
+    color: rgb(104, 104, 104);
     margin-left: 2em;
 }

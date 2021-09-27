@@ -14,21 +14,21 @@ const formats = {
     MARKDOWN: "markdown",
     ORG_MODE: "orgMode",
     TEXT: "text",
-};
+}
 
 // File suffixes of the document formats.
 const fileSuffix = {
     MARKDOWN: ".md",
     ORG_MODE: ".org",
     TEXT: ".txt",
-};
+}
 
 // MIME type of the various document formats.
 const mimeTypes = {
     MARKDOWN: "text/markdown",
     ORG_MODE: "text/org",
     TEXT: "text/plain",
-};
+}
 
 // File type, MIME type and suffix needed to generate the document.
 const fileInfo = {
@@ -47,80 +47,80 @@ const fileInfo = {
         suffix: fileSuffix.TEXT,
         mime: mimeTypes.TEXT,
     },
-};
+}
 
 // The format of the document to generate.
-let documentFormat = fileInfo.MARKDOWN;
+let documentFormat = fileInfo.MARKDOWN
 
 // Unicode regex for 'not a letter'
-const unicodeNotWordRegex = /(\P{L})+/giu;
+const unicodeNotWordRegex = /(\P{L})+/giu
 
 // Title input field in the extension's popup.
-let titleText = document.getElementById("titleText");
+let titleText = document.getElementById("titleText")
 titleText.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabTitle: titleText.value });
-});
+    chrome.storage.sync.set({ tabTitle: titleText.value })
+})
 
 // URL input field in the extension's popup.
-let pageURL = document.getElementById("pageURL");
+let pageURL = document.getElementById("pageURL")
 
 // Keywords input field in the extension's popup.
-let keyWords = document.getElementById("keyWords");
+let keyWords = document.getElementById("keyWords")
 keyWords.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabKeywords: keyWords.value });
-});
+    chrome.storage.sync.set({ tabKeywords: keyWords.value })
+})
 
 // Description input field in the extension's popup.
-let descriptionText = document.getElementById("descriptionText");
+let descriptionText = document.getElementById("descriptionText")
 descriptionText.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabDescription: descriptionText.value });
-});
+    chrome.storage.sync.set({ tabDescription: descriptionText.value })
+})
 
 // Description input field in the extension's popup.
-let longText = document.getElementById("longText");
+let longText = document.getElementById("longText")
 longText.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabText: longText.value });
-});
+    chrome.storage.sync.set({ tabText: longText.value })
+})
 
 // Save button in the extension's popup.
-let saveButton = document.getElementById("saveButton");
+let saveButton = document.getElementById("saveButton")
 
 chrome.storage.sync.get("tabUrl", ({ tabUrl }) => {
-    pageURL.value = tabUrl;
-});
+    pageURL.value = tabUrl
+})
 
 chrome.storage.sync.get("tabTitle", ({ tabTitle }) => {
-    titleText.value = tabTitle;
-});
+    titleText.value = tabTitle
+})
 
 chrome.storage.sync.get("tabKeywords", ({ tabKeywords }) => {
-    keyWords.value = tabKeywords;
-});
+    keyWords.value = tabKeywords
+})
 
 chrome.storage.sync.get("tabDescription", ({ tabDescription }) => {
-    descriptionText.value = tabDescription;
-});
+    descriptionText.value = tabDescription
+})
 
 chrome.storage.sync.get("tabText", ({ tabText }) => {
-    longText.value = tabText;
-});
+    longText.value = tabText
+})
 
 chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
     switch (optionFormat) {
         case formats.MARKDOWN:
-            documentFormat = fileInfo.MARKDOWN;
-            break;
+            documentFormat = fileInfo.MARKDOWN
+            break
 
         case formats.ORG_MODE:
-            documentFormat = fileInfo.ORG_MODE;
-            break;
+            documentFormat = fileInfo.ORG_MODE
+            break
 
         // Fall through
         case formats.TEXT:
         default:
-            documentFormat = fileInfo.TEXT;
+            documentFormat = fileInfo.TEXT
     }
-});
+})
 
 // Download the data.
 saveButton.addEventListener("click", async () => {
@@ -131,18 +131,18 @@ saveButton.addEventListener("click", async () => {
         description: descriptionText.value,
         text: longText.value,
         format: documentFormat,
-    };
+    }
 
-    const data = getData(tabData);
-    const dataUrl = URL.createObjectURL(data);
+    const data = getData(tabData)
+    const dataUrl = URL.createObjectURL(data)
     chrome.downloads.download({
         url: dataUrl,
         filename:
             titleText.value.replace(unicodeNotWordRegex, "_") +
             tabData.format.suffix,
         saveAs: true,
-    });
-});
+    })
+})
 
 /**
  * Return the given data as  formatted 'Blob', depending on the format of the
@@ -152,24 +152,24 @@ saveButton.addEventListener("click", async () => {
  * @returns The given data as a formatted `Blob`, suitable to download.
  */
 function getData(tabData) {
-    let documentString = "";
+    let documentString = ""
 
     switch (tabData.format) {
         case fileInfo.MARKDOWN:
-            documentString = getMarkdown(tabData);
-            break;
+            documentString = getMarkdown(tabData)
+            break
 
         case fileInfo.ORG_MODE:
-            documentString = getOrgMode(tabData);
-            break;
+            documentString = getOrgMode(tabData)
+            break
 
         // Fall through
         case fileInfo.TEXT:
         default:
-            documentString = getPlainText(tabData);
+            documentString = getPlainText(tabData)
     }
 
-    return new Blob([documentString], { type: tabData.format.mime });
+    return new Blob([documentString], { type: tabData.format.mime })
 }
 
 /**
@@ -188,7 +188,7 @@ ${tabData.description}
 [${tabData.title}](${tabData.url})
 
 ${tabData.text}
-`;
+`
 }
 
 /**
@@ -210,7 +210,7 @@ ${tabData.description}
 [[${tabData.url}][${tabData.title}]]
 
 ${tabData.text}
-`;
+`
 }
 
 /**
@@ -231,7 +231,7 @@ ${tabData.description}
 ${tabData.url}
 
 ${tabData.text}
-`;
+`
 }
 
 /**
@@ -242,9 +242,9 @@ ${tabData.text}
 function getDateString() {
     function pad0s(n) {
         // eslint-disable-next-line no-magic-numbers
-        return n < 10 ? "0" + n : n;
+        return n < 10 ? "0" + n : n
     }
-    const today = new Date();
+    const today = new Date()
 
     return (
         today.getFullYear() +
@@ -253,5 +253,5 @@ function getDateString() {
         pad0s(today.getMonth() + 1) +
         "-" +
         pad0s(today.getDate())
-    );
+    )
 }

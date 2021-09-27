@@ -11,7 +11,7 @@
             Settings
         </h1>
         <div id="format">
-            <fieldset>
+            <fieldset id="formatParent">
                 <legend>Note file format</legend>
 
                 <label for="markdown">
@@ -21,7 +21,7 @@
                         name="formatRadio"
                         value="markdown"
                         checked />
-                    Markdown
+                    Markdown (Obsidian, Joplin, Zettlr)
                 </label>
                 <label for="orgMode">
                     <input
@@ -37,7 +37,7 @@
                         id="text"
                         name="formatRadio"
                         value="text" />
-                    Org-Mode (Emacs)
+                    Plain Text
                 </label>
             </fieldset>
         </div>
@@ -58,28 +58,30 @@
             </label>
         </div>
         <!-- Use Markdown or Wiki-style link for URL? -->
-        <div id="preview">
+        <div>
             <hr />
             Example:
-
-            <p># Release-Candidate/Notoy-BrowserExtensions</p>
-            <p>2021-09-26</p>
-            <p>Keywords: #notoy</p>
-            <p>
-                Browser extensions to save the current pages URL with comments
-                to a Markdown, Org-Mode or plain text file and/or communicate
-                with the Notoy note app -
-                Release-Candidate/Notoy-BrowserExtensions: Browser extensions to
-                save the current pages URL with comments to a Markdown, Org-Mode
-                or plain text file and/or communicate with the Notoy note app
-                <br />
-                [https://github.com/Release-Candidate/Notoy-BrowserExtensions](https://github.com/Release-Candidate/Notoy-BrowserExtensions)
-            </p>
-            <p>
-                This is the long text for the example.
-                <br />
-                I don't have much to say.
-            </p>
+            <div id="preview">
+                <p># Release-Candidate/Notoy-BrowserExtensions</p>
+                <p>2021-09-26</p>
+                <p>Keywords: #notoy</p>
+                <p>
+                    Browser extensions to save the current pages URL with
+                    comments to a Markdown, Org-Mode or plain text file and/or
+                    communicate with the Notoy note app -
+                    Release-Candidate/Notoy-BrowserExtensions: Browser
+                    extensions to save the current pages URL with comments to a
+                    Markdown, Org-Mode or plain text file and/or communicate
+                    with the Notoy note app
+                    <br />
+                    [https://github.com/Release-Candidate/Notoy-BrowserExtensions](https://github.com/Release-Candidate/Notoy-BrowserExtensions)
+                </p>
+                <p>
+                    This is the long text for the example.
+                    <br />
+                    I don't have much to say.
+                </p>
+            </div>
         </div>
     </body>
     <script src="options.js"></script>
