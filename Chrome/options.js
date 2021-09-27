@@ -9,6 +9,13 @@
 // eslint doesn't know `chrome`
 /* eslint-disable no-undef */
 
+const url = "https://github.com/Release-Candidate/Notoy-BrowserExtensions"
+const title = "Release-Candidate/Notoy-BrowserExtensions"
+const keywords = "#notoy"
+const description =
+    "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app"
+const text = "This is the long text for the example.\nI don't have much to say."
+
 let previewFormat = formats.MARKDOWN
 let previewUseYaml = false
 let previewUseTimestamp = true
@@ -103,24 +110,22 @@ function setPreview({ addYaml, addTimestamp, format }) {
     switch (format) {
         case formats.ORG_MODE:
             previewText = getOrgMode({
-                url: "https://github.com/Release-Candidate/Notoy-BrowserExtensions",
-                title: "Release-Candidate/Notoy-BrowserExtensions",
-                keywords: "#notoy",
-                description:
-                    "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app",
-                text: "This is the long text for the example.<br />I don't have much to say.",
+                url,
+                title,
+                keywords,
+                description,
+                text,
                 addTimestamp,
             })
             break
 
         case formats.TEXT:
             previewText = getPlainText({
-                url: "https://github.com/Release-Candidate/Notoy-BrowserExtensions",
-                title: "Release-Candidate/Notoy-BrowserExtensions",
-                keywords: "#notoy",
-                description:
-                    "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app",
-                text: "This is the long text for the example.<br />I don't have much to say.",
+                url,
+                title,
+                keywords,
+                description,
+                text,
                 addTimestamp,
                 addYaml,
             })
@@ -130,12 +135,11 @@ function setPreview({ addYaml, addTimestamp, format }) {
         case formats.MARKDOWN:
         default:
             previewText = getMarkdown({
-                url: "https://github.com/Release-Candidate/Notoy-BrowserExtensions",
-                title: "Release-Candidate/Notoy-BrowserExtensions",
-                keywords: "#notoy",
-                description:
-                    "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app",
-                text: "This is the long text for the example.<br />I don't have much to say.",
+                url,
+                title,
+                keywords,
+                description,
+                text,
                 addTimestamp,
                 addYaml,
             })

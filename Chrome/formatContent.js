@@ -16,11 +16,10 @@ const formats = {
 }
 
 /**
- * Return the given `tabData` as a Markdown formatted `Blob` with MIME
- * 'text/markdown'.
+ * Return the given `tabData` as a Markdown formatted string
  *
  * @param {*} tabData The data to put into the Markdown document.
- * @returns The given data as a Markdown formatted `Blob`, suitable to download.
+ * @returns The given data as a Markdown formatted string.
  */
 // eslint-disable-next-line no-unused-vars
 function getMarkdown({
@@ -32,13 +31,15 @@ function getMarkdown({
     addTimestamp,
     addYaml,
 } = {}) {
-    return `YAML: ${addYaml}
+    const yamlString = `---
+    title: "${title}"
+description: "${description}"
+keywords:
+---`
+    const yamlFrontMatter = addYaml ? yamlString + "\n\n" : ""
+    return `${yamlFrontMatter}# ${title}
 
-# ${title}
-
-Date: ${addTimestamp}
-
-Keywords: ${keywords}
+${getTimestamp(addTimestamp)}Keywords: ${keywords}
 
 ${description}
 [${title}](${url})
@@ -48,11 +49,10 @@ ${text}
 }
 
 /**
- * Return the given `tabData` as a Org-Mode formatted `Blob` with MIME
- * 'text/markdown'.
+ * Return the given `tabData` as a Org-Mode formatted string.
  *
  * @param {*} tabData The data to put into the Org-Mode document.
- * @returns The given data as a Org-Mode formatted `Blob`, suitable to download.
+ * @returns The given data as a Org-Mode formatted string.
  */
 // eslint-disable-next-line no-unused-vars
 function getOrgMode({
@@ -68,9 +68,7 @@ function getOrgMode({
 
 * ${title}
 
-Date: ${addTimestamp}
-
-Keywords: ${keywords}
+${getTimestamp(addTimestamp)}Keywords: ${keywords}
 
 ${description}
 [[${url}][${title}]]
@@ -80,11 +78,10 @@ ${text}
 }
 
 /**
- * Return the given `tabData` as a 'plain text' formatted `Blob` with MIME
- * 'text/markdown'.
+ * Return the given `tabData` as a 'plain text' formatted string.
  *
  * @param {*} tabData The data to put into the 'plain text' document.
- * @returns The given data as a 'plain text' formatted `Blob`, suitable to download.
+ * @returns The given data as a 'plain text' formatted string.
  */
 // eslint-disable-next-line no-unused-vars
 function getPlainText({
@@ -100,11 +97,7 @@ function getPlainText({
 
 ${title}
 
-Date: ${addTimestamp}
-
-${getDateString()}
-
-Keywords: ${keywords}
+${getTimestamp(addTimestamp)}Keywords: ${keywords}
 
 ${description}
 ${url}
@@ -133,4 +126,16 @@ function getDateString() {
         "-" +
         pad0s(today.getDate())
     )
+}
+
+/**
+ * Returns the current date as string or an empty string.
+ *
+ * @param {*} addTimestamp If this is `true`, a date string is returned, else
+ * the empty string.
+ * @returns The current date as string, if `addTimestamp` is `true`, the empty
+ * string ("") else.
+ */
+function getTimestamp(addTimestamp) {
+    return addTimestamp ? getDateString() + "\n\n" : ""
 }
