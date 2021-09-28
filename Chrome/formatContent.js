@@ -31,7 +31,7 @@ function getMarkdown({
     addTimestamp,
     addYaml,
 } = {}) {
-    return `${getYamlString({ title, keywords, addYaml })}# ${title}
+    return `${getYamlFrontMatter({ title, keywords, addYaml })}# ${title}
 
 ${getTimestamp(addTimestamp)}Keywords: ${keywords}
 
@@ -87,7 +87,7 @@ function getPlainText({
     addTimestamp,
     addYaml,
 } = {}) {
-    return `${getYamlString({ title, keywords, addYaml })}${title}
+    return `${getYamlFrontMatter({ title, keywords, addYaml })}${title}
 
 ${getTimestamp(addTimestamp)}Keywords: ${keywords}
 
@@ -98,11 +98,26 @@ ${text}
 `
 }
 
+/**
+ * Return the given comma separated keywords as a YAML list of keywords.
+ * @param {*} keywords The string containing the comma separated keywords.
+ * @returns `keywords` as a YAML list of keywords.
+ */
 function getKeywordsYAML(keywords) {
     return keywords.replace(/^|(\s*,\s*)/gu, "\n  - ")
 }
 
-function getYamlString({ title, keywords, addYaml }) {
+/**
+ * Return the YAML front matter containing the given title and comma separated
+ * keywords if `addYaml` is `true` and the empty string else.
+ * @param {*} title The title to set.
+ * @param {*} keywords The keywords to use as a comma separated list.
+ * @param {*} addYaml If this is `true`, the filled YAML front matter is
+ *            returned. If this is `false`, the empty string ("") is returned.
+ * @returns The YAML front matter containing the given title and comma separated
+ * keywords if `addYaml` is `true` and the empty string else.
+ */
+function getYamlFrontMatter({ title, keywords, addYaml }) {
     const yamlString = `---
 title: "${title}"
 author:
