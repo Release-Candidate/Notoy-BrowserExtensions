@@ -27,25 +27,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({ tabText })
 
     chrome.tabs.query({ active: true, currentWindow: true }, ([currTab]) => {
-        tabTitle = currTab.title
-        tabUrl = currTab.url
-
-        chrome.storage.sync.set({ tabUrl })
-        chrome.storage.sync.set({ tabTitle })
-        chrome.storage.sync.set({ tabText })
-
-        chrome.scripting.executeScript(
-            {
-                target: { tabId: currTab.id },
-                function: getContentInfo,
-            },
-            () => {
-                if (chrome.runtime.lastError) {
-                    chrome.storage.sync.set({ tabDescription })
-                    chrome.storage.sync.set({ tabKeywords })
-                }
-            }
-        )
+        getTabInformation(currTab)
     })
 })
 
@@ -58,30 +40,38 @@ chrome.tabs.onActivated.addListener(() => {
     chrome.tabs.query(
         { active: true, lastFocusedWindow: true },
         ([currTab]) => {
-            tabTitle = currTab.title
-            tabUrl = currTab.url
-
-            chrome.storage.sync.set({ tabUrl })
-            chrome.storage.sync.set({ tabTitle })
-            chrome.storage.sync.set({ tabText })
-
-            chrome.scripting.executeScript(
-                {
-                    target: { tabId: currTab.id },
-                    function: getContentInfo,
-                },
-                () => {
-                    if (chrome.runtime.lastError) {
-                        let tabDescription = ""
-                        let tabKeywords = ""
-                        chrome.storage.sync.set({ tabDescription })
-                        chrome.storage.sync.set({ tabKeywords })
-                    }
-                }
-            )
+            getTabInformation(currTab)
         }
     )
 })
+
+/**
+ * Sets the storage from data of the given current tab.
+ * @param {*} currTab The current tab to get the information about.
+ */
+function getTabInformation(currTab) {
+    let tabDescription = ""
+    let tabKeywords = ""
+    tabTitle = currTab.title
+    tabUrl = currTab.url
+
+    chrome.storage.sync.set({ tabUrl })
+    chrome.storage.sync.set({ tabTitle })
+    chrome.storage.sync.set({ tabText })
+
+    chrome.scripting.executeScript(
+        {
+            target: { tabId: currTab.id },
+            function: getContentInfo,
+        },
+        () => {
+            if (chrome.runtime.lastError) {
+                chrome.storage.sync.set({ tabDescription })
+                chrome.storage.sync.set({ tabKeywords })
+            }
+        }
+    )
+}
 
 /**
  * Function that is injected into the current tab to get information about the

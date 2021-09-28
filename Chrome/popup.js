@@ -48,6 +48,10 @@ let documentFormat = fileInfo.MARKDOWN
 // Unicode regex for 'not a letter'
 const unicodeNotWordRegex = /(\P{L})+/giu
 
+document.querySelectorAll("[data-locale]").forEach((elem) => {
+    elem.innerText = chrome.i18n.getMessage(elem.dataset.locale)
+})
+
 // Title input field in the extension's popup.
 let titleText = document.getElementById("titleText")
 titleText.addEventListener("input", async () => {
@@ -56,6 +60,9 @@ titleText.addEventListener("input", async () => {
 
 // URL input field in the extension's popup.
 let pageURL = document.getElementById("pageURL")
+pageURL.addEventListener("input", async () => {
+    chrome.storage.sync.set({ tabUrl: pageURL.value })
+})
 
 // Keywords input field in the extension's popup.
 let keyWords = document.getElementById("keyWords")

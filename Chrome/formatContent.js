@@ -6,9 +6,28 @@
 // Date:     27.Sep.2021
 //
 //=============================================================================
+// Shared functions and data used by the files `options.js` and ˙popup.js`.
+// `chrome` is unknown to eslint
+/* eslint-disable no-undef */
+// Most names are not locally used.
+/* eslint-disable no-unused-vars */
+
+//=============================================================================
+// Translation constants
+
+const transName = chrome.i18n.getMessage("extensionName")
+
+const transBrowserExtension = chrome.i18n.getMessage("browserExtension")
+
+const transPreviewDescription = chrome.i18n.getMessage("previewDescription")
+
+const transPreviewText = chrome.i18n.getMessage("previewText")
+
+const transKeywords = chrome.i18n.getMessage("keywords")
+
+//=============================================================================
 
 // Valid document formats to save.
-// eslint-disable-next-line no-unused-vars
 const formats = {
     MARKDOWN: "markdown",
     ORG_MODE: "orgMode",
@@ -21,7 +40,6 @@ const formats = {
  * @param {*} tabData The data to put into the Markdown document.
  * @returns The given data as a Markdown formatted string.
  */
-// eslint-disable-next-line no-unused-vars
 function getMarkdown({
     url,
     title,
@@ -33,7 +51,7 @@ function getMarkdown({
 } = {}) {
     return `${getYamlFrontMatter({ title, keywords, addYaml })}# ${title}
 
-${getTimestamp(addTimestamp)}Keywords: ${tagifyKeywords(keywords)}
+${getTimestamp(addTimestamp)}${transKeywords} ${tagifyKeywords(keywords)}
 
 ${description}
 [${title}](${url})
@@ -48,7 +66,6 @@ ${text}
  * @param {*} tabData The data to put into the Org-Mode document.
  * @returns The given data as a Org-Mode formatted string.
  */
-// eslint-disable-next-line no-unused-vars
 function getOrgMode({
     url,
     title,
@@ -63,7 +80,7 @@ function getOrgMode({
 
 * ${title}
 
-${getTimestamp(addTimestamp)}Keywords: ${keywords}
+${getTimestamp(addTimestamp)}${transKeywords} ${keywords}
 
 ${description}
 [[${url}][${title}]]
@@ -78,7 +95,6 @@ ${text}
  * @param {*} tabData The data to put into the 'plain text' document.
  * @returns The given data as a 'plain text' formatted string.
  */
-// eslint-disable-next-line no-unused-vars
 function getPlainText({
     url,
     title,
@@ -90,7 +106,7 @@ function getPlainText({
 } = {}) {
     return `${getYamlFrontMatter({ title, keywords, addYaml })}${title}
 
-${getTimestamp(addTimestamp)}Keywords: ${keywords}
+${getTimestamp(addTimestamp)}${transKeywords} ${keywords}
 
 ${description}
 ${url}
@@ -152,6 +168,7 @@ title: "${title}"
 author:
   -
 keywords: ${getKeywordsYAML(keywords)}
+lang: ${chrome.i18n.getUILanguage()}
 ---`
     return addYaml ? yamlString + "\n\n" : ""
 }

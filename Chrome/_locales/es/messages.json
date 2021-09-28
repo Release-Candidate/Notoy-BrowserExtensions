@@ -1,0 +1,12 @@
+{
+  "extensionName": {
+    "message": "Notoy",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Saves the URL of the current active tab with it's title. keywords and a long and short description to disk.",
+    "description": "Description of the extension."
+  }
+
+}
