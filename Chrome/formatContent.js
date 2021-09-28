@@ -31,13 +31,7 @@ function getMarkdown({
     addTimestamp,
     addYaml,
 } = {}) {
-    const yamlString = `---
-    title: "${title}"
-description: "${description}"
-keywords:
----`
-    const yamlFrontMatter = addYaml ? yamlString + "\n\n" : ""
-    return `${yamlFrontMatter}# ${title}
+    return `${getYamlString({ title, keywords, addYaml })}# ${title}
 
 ${getTimestamp(addTimestamp)}Keywords: ${keywords}
 
@@ -93,9 +87,7 @@ function getPlainText({
     addTimestamp,
     addYaml,
 } = {}) {
-    return `YAML: ${addYaml}
-
-${title}
+    return `${getYamlString({ title, keywords, addYaml })}${title}
 
 ${getTimestamp(addTimestamp)}Keywords: ${keywords}
 
@@ -104,6 +96,32 @@ ${url}
 
 ${text}
 `
+}
+
+function getKeywordsYAML(keywords) {
+    return keywords.replace(/^|(\s*,\s*)/gu, "\n  - ")
+}
+
+function getYamlString({ title, keywords, addYaml }) {
+    const yamlString = `---
+title: "${title}"
+author:
+  -
+keywords: ${getKeywordsYAML(keywords)}
+---`
+    return addYaml ? yamlString + "\n\n" : ""
+}
+
+/**
+ * Returns the current date as string or an empty string.
+ *
+ * @param {*} addTimestamp If this is `true`, a date string is returned, else
+ * the empty string.
+ * @returns The current date as string, if `addTimestamp` is `true`, the empty
+ * string ("") else.
+ */
+function getTimestamp(addTimestamp) {
+    return addTimestamp ? getDateString() + "\n\n" : ""
 }
 
 /**
@@ -126,16 +144,4 @@ function getDateString() {
         "-" +
         pad0s(today.getDate())
     )
-}
-
-/**
- * Returns the current date as string or an empty string.
- *
- * @param {*} addTimestamp If this is `true`, a date string is returned, else
- * the empty string.
- * @returns The current date as string, if `addTimestamp` is `true`, the empty
- * string ("") else.
- */
-function getTimestamp(addTimestamp) {
-    return addTimestamp ? getDateString() + "\n\n" : ""
 }

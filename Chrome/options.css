@@ -59,6 +59,7 @@ fieldset {
 }
 
 #preview {
+    font-family: "Courier New", Courier, monospace;
     color: rgb(104, 104, 104);
     margin-left: 2em;
     margin-top: 1em;

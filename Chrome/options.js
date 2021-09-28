@@ -11,7 +11,7 @@
 
 const url = "https://github.com/Release-Candidate/Notoy-BrowserExtensions"
 const title = "Release-Candidate/Notoy-BrowserExtensions"
-const keywords = "#notoy"
+const keywords = "#notoy, browser extension"
 const description =
     "Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app - Release-Candidate/Notoy-BrowserExtensions: Browser extensions to save the current pages URL with comments to a Markdown, Org-Mode or plain text file and/or communicate with the Notoy note app"
 const text = "This is the long text for the example.\nI don't have much to say."
@@ -146,5 +146,8 @@ function setPreview({ addYaml, addTimestamp, format }) {
     }
 
     let previewPart = document.getElementById("preview")
-    previewPart.innerHTML = previewText.split("\n").join("<br/>")
+    previewPart.innerHTML = previewText
+        .split("\n")
+        .join("<br/>")
+        .replace(/\s\s/gu, "&nbsp;&nbsp;")
 }
