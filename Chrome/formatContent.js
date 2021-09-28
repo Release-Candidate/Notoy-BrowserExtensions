@@ -33,7 +33,7 @@ function getMarkdown({
 } = {}) {
     return `${getYamlFrontMatter({ title, keywords, addYaml })}# ${title}
 
-${getTimestamp(addTimestamp)}Keywords: ${keywords}
+${getTimestamp(addTimestamp)}Keywords: ${tagifyKeywords(keywords)}
 
 ${description}
 [${title}](${url})
@@ -59,6 +59,7 @@ function getOrgMode({
 } = {}) {
     return `#+title:  ${title}
 #+date:   ${getDateString()}
+#+FILETAGS: ${orgifyKeywords(keywords)}
 
 * ${title}
 
@@ -96,6 +97,34 @@ ${url}
 
 ${text}
 `
+}
+
+/**
+ * Add a hashtag ("#") to every keyword in the comma separated list of keywords,
+ * replace spaces in keywords by an underline ("_").
+ * @param {*} keywords The comma separated list of keywords to 'tagify'.
+ * @returns The 'tagized' keywords, separated by commas.
+ */
+function tagifyKeywords(keywords) {
+    return keywords
+        .replace(/(\s*,\s*)/gu, ", #")
+        .replace(/^\s*/gu, "#")
+        .replace(/([^\s,]+)\s+/gu, "$1_")
+}
+
+/**
+ * Add a colon (":") before every keyword in the comma separated list of
+ * keywords and replace spaces in keywords by an underline ("_").
+ * @param {*} keywords The comma separated list of keywords to 'orgify'.
+ * @returns The keywords, separated by colons, and with a colon at the start
+ * and end.
+ */
+function orgifyKeywords(keywords) {
+    return keywords
+        .replace(/(\s*,\s*)/gu, ":")
+        .replace(/^\s*/gu, ":")
+        .replace(/\s*$/gu, ":")
+        .replace(/([^\s,]+)\s+/gu, "$1_")
 }
 
 /**
