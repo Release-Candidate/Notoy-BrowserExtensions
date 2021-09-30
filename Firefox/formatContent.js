@@ -7,7 +7,7 @@
 //
 //=============================================================================
 // Shared functions and data used by the files `options.js` and ˙popup.js`.
-// `chrome` is unknown to eslint
+// `browser` is unknown to eslint
 /* eslint-disable no-undef */
 // Most names are not locally used.
 /* eslint-disable no-unused-vars */
@@ -15,15 +15,15 @@
 //=============================================================================
 // Translation constants
 
-const transName = chrome.i18n.getMessage("extensionName")
+const transName = browser.i18n.getMessage("extensionName")
 
-const transBrowserExtension = chrome.i18n.getMessage("browserExtension")
+const transBrowserExtension = browser.i18n.getMessage("browserExtension")
 
-const transPreviewDescription = chrome.i18n.getMessage("previewDescription")
+const transPreviewDescription = browser.i18n.getMessage("previewDescription")
 
-const transPreviewText = chrome.i18n.getMessage("previewText")
+const transPreviewText = browser.i18n.getMessage("previewText")
 
-const transKeywords = chrome.i18n.getMessage("keywords")
+const transKeywords = browser.i18n.getMessage("keywords")
 
 //=============================================================================
 
@@ -168,7 +168,7 @@ title: "${title}"
 author:
   -
 keywords: ${getKeywordsYAML(keywords)}
-lang: ${chrome.i18n.getUILanguage()}
+lang: ${browser.i18n.getUILanguage()}
 ---`
     return addYaml ? yamlString + "\n\n" : ""
 }

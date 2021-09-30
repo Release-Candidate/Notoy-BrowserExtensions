@@ -6,7 +6,7 @@
 // Date:     10.Aug.2021
 //
 //=============================================================================
-// `chrome` is unknown to eslint
+// `browser` is unknown to eslint
 /* eslint-disable no-undef */
 
 let tabTitle = "Title"
@@ -16,17 +16,17 @@ let tabText = ""
 /**
  * Initialization of the extension.
  */
-chrome.runtime.onInstalled.addListener(() => {
+browser.runtime.onInstalled.addListener(() => {
     let tabDescription = ""
     let tabKeywords = ""
 
-    chrome.storage.sync.set({ tabUrl })
-    chrome.storage.sync.set({ tabTitle })
-    chrome.storage.sync.set({ tabDescription })
-    chrome.storage.sync.set({ tabKeywords })
-    chrome.storage.sync.set({ tabText })
+    browser.storage.sync.set({ tabUrl })
+    browser.storage.sync.set({ tabTitle })
+    browser.storage.sync.set({ tabDescription })
+    browser.storage.sync.set({ tabKeywords })
+    browser.storage.sync.set({ tabText })
 
-    chrome.tabs.query({ active: true, currentWindow: true }, ([currTab]) => {
+    browser.tabs.query({ active: true, currentWindow: true }, ([currTab]) => {
         getTabInformation(currTab)
     })
 })
@@ -35,9 +35,25 @@ chrome.runtime.onInstalled.addListener(() => {
  * Function that does the main work, gets the current tab's URL and title text
  * and injects the function `getContentInfo` in the current tab to get the
  * tab's content info.
+ * Called when the current tab has changed.
  */
-chrome.tabs.onActivated.addListener(() => {
-    chrome.tabs.query(
+browser.tabs.onActivated.addListener(() => {
+    browser.tabs.query(
+        { active: true, lastFocusedWindow: true },
+        ([currTab]) => {
+            getTabInformation(currTab)
+        }
+    )
+})
+
+/**
+ * Function that does the main work, gets the current tab's URL and title text
+ * and injects the function `getContentInfo` in the current tab to get the
+ * tab's content info.
+ * Called when the current tab has been updated, like the URL has changed.
+ */
+browser.tabs.onUpdated.addListener(() => {
+    browser.tabs.query(
         { active: true, lastFocusedWindow: true },
         ([currTab]) => {
             getTabInformation(currTab)
@@ -50,47 +66,25 @@ chrome.tabs.onActivated.addListener(() => {
  * @param {*} currTab The current tab to get the information about.
  */
 function getTabInformation(currTab) {
-    let tabDescription = ""
-    let tabKeywords = ""
     tabTitle = currTab.title
     tabUrl = currTab.url
 
-    chrome.storage.sync.set({ tabUrl })
-    chrome.storage.sync.set({ tabTitle })
-    chrome.storage.sync.set({ tabText })
+    browser.storage.sync.set({ tabUrl })
+    browser.storage.sync.set({ tabTitle })
+    browser.storage.sync.set({ tabText })
 
-    chrome.scripting.executeScript(
-        {
-            target: { tabId: currTab.id },
-            function: getContentInfo,
-        },
-        () => {
-            if (chrome.runtime.lastError) {
+    browser.tabs
+        .executeScript(currTab.id, {
+            file: "./inject.js",
+        })
+        .then(
+            (value) => value,
+            // eslint-disable-next-line no-unused-vars
+            (err) => {
+                let tabDescription = ""
+                let tabKeywords = ""
                 chrome.storage.sync.set({ tabDescription })
                 chrome.storage.sync.set({ tabKeywords })
             }
-        }
-    )
-}
-
-/**
- * Function that is injected into the current tab to get information about the
- * content, like the description in `<meta name="description" ...>`.
- */
-function getContentInfo() {
-    let tabDescription = ""
-    let tabKeywords = ""
-
-    const desc = document.querySelector('meta[name="description"]')
-    if (desc !== null) {
-        tabDescription = desc.getAttribute("content")
-    }
-
-    const tags = document.querySelector('meta[name="keywords"]')
-    if (tags !== null) {
-        tabKeywords = tags.getAttribute("content")
-    }
-
-    chrome.storage.sync.set({ tabDescription })
-    chrome.storage.sync.set({ tabKeywords })
+        )
 }

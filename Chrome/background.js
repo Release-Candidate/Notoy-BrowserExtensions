@@ -35,8 +35,24 @@ chrome.runtime.onInstalled.addListener(() => {
  * Function that does the main work, gets the current tab's URL and title text
  * and injects the function `getContentInfo` in the current tab to get the
  * tab's content info.
+ * Called if the active tab has changed.
  */
 chrome.tabs.onActivated.addListener(() => {
+    chrome.tabs.query(
+        { active: true, lastFocusedWindow: true },
+        ([currTab]) => {
+            getTabInformation(currTab)
+        }
+    )
+})
+
+/**
+ * Function that does the main work, gets the current tab's URL and title text
+ * and injects the function `getContentInfo` in the current tab to get the
+ * tab's content info.
+ * Called if the active tab's URL has changed.
+ */
+chrome.tabs.onUpdated.addListener(() => {
     chrome.tabs.query(
         { active: true, lastFocusedWindow: true },
         ([currTab]) => {

@@ -6,7 +6,7 @@
 // Date:     16.Sep.2021
 //
 //=============================================================================
-// eslint doesn't know `chrome`
+// eslint doesn't know `browser`
 /* eslint-disable no-undef */
 
 const url = "https://github.com/Release-Candidate/Notoy-BrowserExtensions"
@@ -20,10 +20,10 @@ let previewUseYaml = false
 let previewUseTimestamp = true
 
 document.querySelectorAll("[data-locale]").forEach((elem) => {
-    elem.innerText = chrome.i18n.getMessage(elem.dataset.locale)
+    elem.innerText = browser.i18n.getMessage(elem.dataset.locale)
 })
 
-chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
+browser.storage.sync.get("optionFormat", ({ optionFormat }) => {
     previewFormat = optionFormat
     let markdownCheck = document.getElementById("markdown")
     let orgModeCheck = document.getElementById("orgMode")
@@ -53,7 +53,7 @@ chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
 let formatParent = document.getElementById("formatParent")
 formatParent.addEventListener("change", async (event) => {
     const optionFormat = event.target.value
-    chrome.storage.sync.set({ optionFormat })
+    browser.storage.sync.set({ optionFormat })
     previewFormat = optionFormat
     setPreview({
         addYaml: previewUseYaml,
@@ -63,13 +63,13 @@ formatParent.addEventListener("change", async (event) => {
 })
 
 let useTimestamp = document.getElementById("timestampInput")
-chrome.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
+browser.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
     useTimestamp.checked = optionTimestamp
     previewUseTimestamp = optionTimestamp
 })
 useTimestamp.addEventListener("click", async (event) => {
     const optionTimestamp = event.target.checked
-    chrome.storage.sync.set({ optionTimestamp })
+    browser.storage.sync.set({ optionTimestamp })
     previewUseTimestamp = optionTimestamp
     setPreview({
         addYaml: previewUseYaml,
@@ -79,7 +79,7 @@ useTimestamp.addEventListener("click", async (event) => {
 })
 
 let useYamlFrontMatter = document.getElementById("yamlFrontMatter")
-chrome.storage.sync.get("optionYaml", ({ optionYaml }) => {
+browser.storage.sync.get("optionYaml", ({ optionYaml }) => {
     useYamlFrontMatter.checked = optionYaml
     previewUseYaml = optionYaml
     setPreview({
@@ -90,7 +90,7 @@ chrome.storage.sync.get("optionYaml", ({ optionYaml }) => {
 })
 useYamlFrontMatter.addEventListener("click", async (event) => {
     const optionYaml = event.target.checked
-    chrome.storage.sync.set({ optionYaml })
+    browser.storage.sync.set({ optionYaml })
     previewUseYaml = optionYaml
     setPreview({
         addYaml: previewUseYaml,

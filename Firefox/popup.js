@@ -6,7 +6,7 @@
 // Date:     11.Aug.2021
 //
 //=============================================================================
-// `chrome` is unknown to eslint
+// `browser` is unknown to eslint
 /* eslint-disable no-undef */
 
 // File suffixes of the document formats.
@@ -49,73 +49,73 @@ let documentFormat = fileInfo.MARKDOWN
 const unicodeNotWordRegex = /(\P{L})+/giu
 
 document.querySelectorAll("[data-locale]").forEach((elem) => {
-    elem.innerText = chrome.i18n.getMessage(elem.dataset.locale)
+    elem.innerText = browser.i18n.getMessage(elem.dataset.locale)
 })
 
 // Title input field in the extension's popup.
 let titleText = document.getElementById("titleText")
 titleText.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabTitle: titleText.value })
+    browser.storage.sync.set({ tabTitle: titleText.value })
 })
 
 // URL input field in the extension's popup.
 let pageURL = document.getElementById("pageURL")
 pageURL.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabUrl: pageURL.value })
+    browser.storage.sync.set({ tabUrl: pageURL.value })
 })
 
 // Keywords input field in the extension's popup.
 let keyWords = document.getElementById("keyWords")
 keyWords.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabKeywords: keyWords.value })
+    browser.storage.sync.set({ tabKeywords: keyWords.value })
 })
 
 // Description input field in the extension's popup.
 let descriptionText = document.getElementById("descriptionText")
 descriptionText.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabDescription: descriptionText.value })
+    browser.storage.sync.set({ tabDescription: descriptionText.value })
 })
 
 // Description input field in the extension's popup.
 let longText = document.getElementById("longText")
 longText.addEventListener("input", async () => {
-    chrome.storage.sync.set({ tabText: longText.value })
+    browser.storage.sync.set({ tabText: longText.value })
 })
 
 // Save button in the extension's popup.
 let saveButton = document.getElementById("saveButton")
 
-chrome.storage.sync.get("tabUrl", ({ tabUrl }) => {
+browser.storage.sync.get("tabUrl", ({ tabUrl }) => {
     pageURL.value = tabUrl
 })
 
-chrome.storage.sync.get("tabTitle", ({ tabTitle }) => {
+browser.storage.sync.get("tabTitle", ({ tabTitle }) => {
     titleText.value = tabTitle
 })
 
-chrome.storage.sync.get("tabKeywords", ({ tabKeywords }) => {
+browser.storage.sync.get("tabKeywords", ({ tabKeywords }) => {
     keyWords.value = tabKeywords
 })
 
-chrome.storage.sync.get("tabDescription", ({ tabDescription }) => {
+browser.storage.sync.get("tabDescription", ({ tabDescription }) => {
     descriptionText.value = tabDescription
 })
 
-chrome.storage.sync.get("tabText", ({ tabText }) => {
+browser.storage.sync.get("tabText", ({ tabText }) => {
     longText.value = tabText
 })
 
 let addTimestamp = false
-chrome.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
+browser.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
     addTimestamp = optionTimestamp
 })
 
 let addYaml = false
-chrome.storage.sync.get("optionYaml", ({ optionYaml }) => {
+browser.storage.sync.get("optionYaml", ({ optionYaml }) => {
     addYaml = optionYaml
 })
 
-chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
+browser.storage.sync.get("optionFormat", ({ optionFormat }) => {
     switch (optionFormat) {
         case formats.MARKDOWN:
             documentFormat = fileInfo.MARKDOWN
@@ -147,7 +147,7 @@ saveButton.addEventListener("click", async () => {
 
     const data = getData(tabData)
     const dataUrl = URL.createObjectURL(data)
-    chrome.downloads.download({
+    browser.downloads.download({
         url: dataUrl,
         filename:
             titleText.value.replace(unicodeNotWordRegex, "_") +

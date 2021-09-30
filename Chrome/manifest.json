@@ -4,6 +4,7 @@
     "version": "0.9.0",
     "default_locale": "en",
     "manifest_version": 3,
+    "author": "Roland Csaszar",
     "background": {
         "service_worker": "background.js"
     },

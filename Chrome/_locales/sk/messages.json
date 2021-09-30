@@ -4,11 +4,11 @@
     "description": "Name der Extension."
   },
   "extensionDescription": {
-    "message": "Saves a link to the current active tab with its title. keywords and a long and short description as a markdown, Org-Mode or text file to disk.",
+    "message": "Speichert einen Link des aktuellen Tabs mit dessen Titel, Schlagworten und einer ausführlichen und einer kurzen Beschreibung als Markdown, Org-Mode oder Text Datei.",
     "description": "Beschreibung der Extension."
   },
   "browserExtension": {
-    "message": "Rozšírenie prehliadača",
+    "message": "Browser-Erweiterung",
     "description": "Übersetzung von 'browser extension'"
   },
   "previewDescription": {
