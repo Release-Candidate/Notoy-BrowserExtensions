@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: MIT
+// Copyright (C) 2021 Roland Csaszar
+//
+// Project:  notoy-chrome_extensions
+// File:     inject.js
+// Date:     30.Sep.2021
+//
+//=============================================================================
+// Eslint doesn't know `chrome`.
+/* eslint-disable no-undef */
+
+/* Script may be injected more than once, so don't use `let` or `const` :( */
+
+tabDescription = ""
+tabKeywords = ""
+
+desc = document.querySelector('meta[name="description"]')
+if (desc !== null) {
+    tabDescription = desc.getAttribute("content")
+}
+
+tags = document.querySelector('meta[name="keywords"]')
+if (tags !== null) {
+    tabKeywords = tags.getAttribute("content")
+}
+
+chrome.storage.sync.set({ tabDescription })
+chrome.storage.sync.set({ tabKeywords })
