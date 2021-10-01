@@ -23,12 +23,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install eslint
+    - run: npm install -g eslint
     - run: eslint "./**/*.js" -o eslint.txt
-    
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
-      with:       
+      with:
         name: "ESLint report"
         # A file, directory or wildcard pattern that describes what to upload
         path: eslint.txt
