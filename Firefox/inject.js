@@ -24,5 +24,5 @@ if (tags !== null) {
     tabKeywords = tags.getAttribute("content")
 }
 
-browser.storage.sync.set({ tabDescription })
-browser.storage.sync.set({ tabKeywords })
+browser.storage.local.set({ tabDescription })
+browser.storage.local.set({ tabKeywords })

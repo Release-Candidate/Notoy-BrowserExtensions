@@ -20,11 +20,11 @@ browser.runtime.onInstalled.addListener(() => {
     let tabDescription = ""
     let tabKeywords = ""
 
-    browser.storage.sync.set({ tabUrl })
-    browser.storage.sync.set({ tabTitle })
-    browser.storage.sync.set({ tabDescription })
-    browser.storage.sync.set({ tabKeywords })
-    browser.storage.sync.set({ tabText })
+    browser.storage.local.set({ tabUrl })
+    browser.storage.local.set({ tabTitle })
+    browser.storage.local.set({ tabDescription })
+    browser.storage.local.set({ tabKeywords })
+    browser.storage.local.set({ tabText })
 
     browser.tabs.query({ active: true, currentWindow: true }, ([currTab]) => {
         getTabInformation(currTab)
@@ -69,9 +69,9 @@ function getTabInformation(currTab) {
     tabTitle = currTab.title
     tabUrl = currTab.url
 
-    browser.storage.sync.set({ tabUrl })
-    browser.storage.sync.set({ tabTitle })
-    browser.storage.sync.set({ tabText })
+    browser.storage.local.set({ tabUrl })
+    browser.storage.local.set({ tabTitle })
+    browser.storage.local.set({ tabText })
 
     browser.tabs
         .executeScript(currTab.id, {
@@ -83,8 +83,8 @@ function getTabInformation(currTab) {
             (err) => {
                 let tabDescription = ""
                 let tabKeywords = ""
-                chrome.storage.sync.set({ tabDescription })
-                chrome.storage.sync.set({ tabKeywords })
+                chrome.storage.local.set({ tabDescription })
+                chrome.storage.local.set({ tabKeywords })
             }
         )
 }

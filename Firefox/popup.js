@@ -55,53 +55,53 @@ document.querySelectorAll("[data-locale]").forEach((elem) => {
 // Title input field in the extension's popup.
 let titleText = document.getElementById("titleText")
 titleText.addEventListener("input", async () => {
-    browser.storage.sync.set({ tabTitle: titleText.value })
+    browser.storage.local.set({ tabTitle: titleText.value })
 })
 
 // URL input field in the extension's popup.
 let pageURL = document.getElementById("pageURL")
 pageURL.addEventListener("input", async () => {
-    browser.storage.sync.set({ tabUrl: pageURL.value })
+    browser.storage.local.set({ tabUrl: pageURL.value })
 })
 
 // Keywords input field in the extension's popup.
 let keyWords = document.getElementById("keyWords")
 keyWords.addEventListener("input", async () => {
-    browser.storage.sync.set({ tabKeywords: keyWords.value })
+    browser.storage.local.set({ tabKeywords: keyWords.value })
 })
 
 // Description input field in the extension's popup.
 let descriptionText = document.getElementById("descriptionText")
 descriptionText.addEventListener("input", async () => {
-    browser.storage.sync.set({ tabDescription: descriptionText.value })
+    browser.storage.local.set({ tabDescription: descriptionText.value })
 })
 
 // Description input field in the extension's popup.
 let longText = document.getElementById("longText")
 longText.addEventListener("input", async () => {
-    browser.storage.sync.set({ tabText: longText.value })
+    browser.storage.local.set({ tabText: longText.value })
 })
 
 // Save button in the extension's popup.
 let saveButton = document.getElementById("saveButton")
 
-browser.storage.sync.get("tabUrl", ({ tabUrl }) => {
+browser.storage.local.get("tabUrl", ({ tabUrl }) => {
     pageURL.value = tabUrl
 })
 
-browser.storage.sync.get("tabTitle", ({ tabTitle }) => {
+browser.storage.local.get("tabTitle", ({ tabTitle }) => {
     titleText.value = tabTitle
 })
 
-browser.storage.sync.get("tabKeywords", ({ tabKeywords }) => {
+browser.storage.local.get("tabKeywords", ({ tabKeywords }) => {
     keyWords.value = tabKeywords
 })
 
-browser.storage.sync.get("tabDescription", ({ tabDescription }) => {
+browser.storage.local.get("tabDescription", ({ tabDescription }) => {
     descriptionText.value = tabDescription
 })
 
-browser.storage.sync.get("tabText", ({ tabText }) => {
+browser.storage.local.get("tabText", ({ tabText }) => {
     longText.value = tabText
 })
 
