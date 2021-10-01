@@ -105,7 +105,7 @@ chrome.storage.sync.get("tabText", ({ tabText }) => {
     longText.value = tabText
 })
 
-let addTimestamp = false
+let addTimestamp = true
 chrome.storage.sync.get("optionTimestamp", ({ optionTimestamp }) => {
     addTimestamp = optionTimestamp
 })
@@ -117,8 +117,8 @@ chrome.storage.sync.get("optionYaml", ({ optionYaml }) => {
 
 chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
     switch (optionFormat) {
-        case formats.MARKDOWN:
-            documentFormat = fileInfo.MARKDOWN
+        case formats.TEXT:
+            documentFormat = fileInfo.TEXT
             break
 
         case formats.ORG_MODE:
@@ -126,9 +126,9 @@ chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
             break
 
         // Fall through
-        case formats.TEXT:
+        case formats.MARKDOWN:
         default:
-            documentFormat = fileInfo.TEXT
+            documentFormat = fileInfo.MARKDOWN
     }
 })
 
