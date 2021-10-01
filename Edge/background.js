@@ -20,11 +20,11 @@ chrome.runtime.onInstalled.addListener(() => {
     let tabDescription = ""
     let tabKeywords = ""
 
-    chrome.storage.sync.set({ tabUrl })
-    chrome.storage.sync.set({ tabTitle })
-    chrome.storage.sync.set({ tabDescription })
-    chrome.storage.sync.set({ tabKeywords })
-    chrome.storage.sync.set({ tabText })
+    chrome.storage.local.set({ tabUrl })
+    chrome.storage.local.set({ tabTitle })
+    chrome.storage.local.set({ tabDescription })
+    chrome.storage.local.set({ tabKeywords })
+    chrome.storage.local.set({ tabText })
 
     chrome.tabs.query({ active: true, currentWindow: true }, ([currTab]) => {
         getTabInformation(currTab)
@@ -69,9 +69,9 @@ function getTabInformation(currTab) {
     tabTitle = currTab.title
     tabUrl = currTab.url
 
-    chrome.storage.sync.set({ tabUrl })
-    chrome.storage.sync.set({ tabTitle })
-    chrome.storage.sync.set({ tabText })
+    chrome.storage.local.set({ tabUrl })
+    chrome.storage.local.set({ tabTitle })
+    chrome.storage.local.set({ tabText })
 
     chrome.tabs.executeScript(
         currTab.id,
@@ -82,8 +82,8 @@ function getTabInformation(currTab) {
             if (chrome.runtime.lastError) {
                 let tabDescription = ""
                 let tabKeywords = ""
-                chrome.storage.sync.set({ tabDescription })
-                chrome.storage.sync.set({ tabKeywords })
+                chrome.storage.local.set({ tabDescription })
+                chrome.storage.local.set({ tabKeywords })
             }
         }
     )
