@@ -5,7 +5,7 @@
 # File:     create_packages.yml
 # Date:     01.Oct.2021
 ###############################################################################
-name: Nuget Packages
+name: Generate Packages
 
 on:
   release:
@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - uses: olegtarasov/get-tag@v2.1
         id: tagName
         with:
@@ -60,6 +61,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - uses: olegtarasov/get-tag@v2.1
         id: tagName
         with:
@@ -97,6 +99,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - uses: olegtarasov/get-tag@v2.1
         id: tagName
         with:
