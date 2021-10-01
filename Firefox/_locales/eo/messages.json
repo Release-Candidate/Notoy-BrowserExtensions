@@ -1,0 +1,74 @@
+{
+  "extensionName": {
+    "message": "Notoy",
+    "description": "Name der Extension."
+  },
+  "extensionDescription": {
+    "message": "Konservas ligilon de la aktuala retpaĝo kun sia titolo, etikedoj kaj mallonga kaj detala preskribo kiel Markdown, Org-Mode aŭ texto",
+    "description": "Beschreibung der Extension."
+  },
+  "browserExtension": {
+    "message": "Retumila etendaĵo",
+    "description": "Übersetzung von 'browser extension'"
+  },
+  "previewDescription": {
+    "message": "Tiu ĉi estas mallonge preskribo de la enhavo, plej ofte farite per de retpaĝo mem, sed vi povas ŝanĝi ĝin.",
+    "description": "Kurze Beschreibung des Inhaltes des Beispieles auf der 'Optionen'-Seite"
+  },
+  "previewText": {
+    "message": "Tiu ĉi estas la detala preskribo de la enhavo.\nĈi tie vi povas skribi kion vi volas.",
+    "description": "Ausführliche Beschreibung des Inhaltes des Beispieles auf der 'Optionen'-Seite"
+  },
+  "keywords": {
+    "message": "Etikedoj:",
+    "description": "Die Mehrzahl des Wortes 'Schlagwort' als Überschrift einer Liste von Schlagworten."
+  },
+  "notoySettings": {
+    "message": "Preferoj de Notoy",
+    "description": "Überschrift der Seite 'Optionen'."
+  },
+  "fileFormat": {
+    "message": "Formato de la noto:",
+    "description": "Bezeichnung der Auswahl des Formates der Notiz."
+  },
+  "addCurrentDate": {
+    "message": "Ĉu aldoni nuna dato al la noto?",
+    "description": "Frage, ob das aktuelle Datum zur Notiz hinzugefügt werden soll."
+  },
+  "addYAMLFrontMatter": {
+    "message": "Ĉu aldoni 'YAML Front Matter' (YAML metadatumoj por Pandoc) al la noto?",
+    "description": "Frage, ob 'YAML Front Matter' zur Notiz hinzugefügt werden soll."
+  },
+  "example": {
+    "message": "Ekzamplo:",
+    "description": "Die Überschrift des Beispieles auf der 'Optionen'-Seite."
+  },
+  "saveWebsite": {
+    "message": "Konservu tiu ĉi retpaĝo en noto",
+    "description": "Überschrift des 'Popups'. Beschreibt, was diese Erweiterung macht."
+  },
+  "title": {
+    "message": "Titolo:",
+    "description": "Bezeichnung der Überschrift der Webseite, die verwendet werden soll."
+  },
+  "url": {
+    "message": "Ligilo:",
+    "description": "Bezeichnung der URL der Webseite."
+  },
+  "keywordsCommaSep": {
+    "message": "Etikedoj (partigantaj per komoj):",
+    "description": "Bezeichnung für eine Liste von mit Beistrichen getrennten Schlagworten."
+  },
+  "shortDescription": {
+    "message": "Mallonga priskribo:",
+    "description": "Bezeichnung für die kurze Beschreibung des Inhalts."
+  },
+  "longDescription": {
+    "message": "Detala priskribo:",
+    "description": "Bezeichnung für die ausführliche Beschreibung des Inhalts."
+  },
+  "saveButton": {
+    "message": "Konservi",
+    "description": "Bezeichnung des Knopfes."
+  }
+}
