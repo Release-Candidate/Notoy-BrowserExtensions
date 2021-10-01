@@ -1,9 +1,9 @@
 html {
-    width: 485px; /* ??? */
+    width: 740px; /* 740px + margins + scrollbar width */
     height: 600px;
     margin: 0px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
     padding: 0px;
     box-sizing: border-box;
 }

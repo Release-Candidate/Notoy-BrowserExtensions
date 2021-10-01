@@ -74,3 +74,23 @@ textarea {
 #save {
     margin-bottom: 1em;
 }
+
+button {
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+#saveButton:hover {
+    background-color: lawngreen;
+    border: 1px solid darkgreen;
+}
+
+#saveButton:active {
+    background-color: darkgreen;
+    border: 1px solid black;
+    color: white;
+}
+
+#saveButton {
+    background-color: lightgreen;
+}

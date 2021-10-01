@@ -146,14 +146,20 @@ saveButton.addEventListener("click", async () => {
     }
 
     const data = getData(tabData)
-    const dataUrl = URL.createObjectURL(data)
-    browser.downloads.download({
-        url: dataUrl,
-        filename:
-            titleText.value.replace(unicodeNotWordRegex, "_") +
-            tabData.format.suffix,
-        saveAs: true,
-    })
+
+    let anchor = document.createElement("a")
+    anchor.href = URL.createObjectURL(data)
+    anchor.download =
+        titleText.value.replace(unicodeNotWordRegex, "_") +
+        tabData.format.suffix
+    anchor.textContent =
+        titleText.value.replace(unicodeNotWordRegex, "_") +
+        tabData.format.suffix
+    anchor.hidden = true
+    document.body.appendChild(anchor)
+    if (anchor.click) {
+        anchor.click()
+    }
 })
 
 /**
