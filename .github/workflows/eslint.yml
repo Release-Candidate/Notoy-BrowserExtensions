@@ -24,6 +24,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install -g eslint
+    - run: eslint --version
     - run: eslint */*.js -o eslint.txt
 
     - name: Upload a Build Artifact
