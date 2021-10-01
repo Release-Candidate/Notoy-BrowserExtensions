@@ -8,7 +8,7 @@
     "description": "Beschreibung der Extension."
   },
   "browserExtension": {
-    "message": "Browser-Erweiterung",
+    "message": "Rozšírenie prehliadača",
     "description": "Übersetzung von 'browser extension'"
   },
   "previewDescription": {
@@ -24,7 +24,7 @@
     "description": "Die Mehrzahl des Wortes 'Schlagwort' als Überschrift einer Liste von Schlagworten."
   },
   "notoySettings": {
-    "message": "Notoy Einstellungen",
+    "message": "Notoy možnosti",
     "description": "Überschrift der Seite 'Optionen'."
   },
   "fileFormat": {
@@ -68,7 +68,7 @@
     "description": "Bezeichnung für die ausführliche Beschreibung des Inhalts."
   },
   "saveButton": {
-    "message": "Speichern",
+    "message": "Uložiť",
     "description": "Bezeichnung des Knopfes."
   }
 }
