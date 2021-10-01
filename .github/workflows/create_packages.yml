@@ -1,0 +1,129 @@
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2021 Roland Csaszar
+#
+# Project:  notoy-browser_extensions
+# File:     create_packages.yml
+# Date:     01.Oct.2021
+###############################################################################
+name: Nuget Packages
+
+on:
+  release:
+    types: [created]
+
+  push:
+    tags:
+      - "v*.*.*"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  chrome-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"
+
+      - name: Zip Package
+        run: |
+          cd $GITHUB_WORKSPACE/Chrome
+          zip -r -v notoy-chrome.zip *
+
+      - name: Generate Changelog
+        run: |
+          cd $GITHUB_WORKSPACE/scripts
+          ./get_changelog.sh > ../first_changelog.md
+
+      - name: Release to GitHub
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: Version ${{ env.GIT_TAG_NAME }}
+          body_path: first_changelog.md
+          files: ./Chrome/notoy-chrome.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: Chrome Package
+          path: ./Chrome/*.zip
+
+  edge-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"
+
+      - name: Zip Package
+        run: |
+          cd $GITHUB_WORKSPACE/Edge
+          zip -r -v notoy-edge.zip *
+
+
+      - name: Generate Changelog
+        run: |
+          cd $GITHUB_WORKSPACE/scripts
+          ./get_changelog.sh > ../first_changelog.md
+
+      - name: Release to GitHub
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: Version ${{ env.GIT_TAG_NAME }}
+          body_path: first_changelog.md
+          files: ./Edge/notoy-edge.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: Edge Package
+          path: ./Edge/*.zip
+
+  firefox-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"
+
+      - name: Zip Package
+        run: |
+          cd $GITHUB_WORKSPACE/Firefox
+          zip -r -v notoy-firefox.zip *
+
+      - name: Generate Changelog
+        run: |
+          cd $GITHUB_WORKSPACE/scripts
+          ./get_changelog.sh > ../first_changelog.md
+
+      - name: Release to GitHub
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: Version ${{ env.GIT_TAG_NAME }}
+          body_path: first_changelog.md
+          files: ./Firefox/notoy-firefox.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: Firefox Package
+          path: ./Firefox/*.zip
