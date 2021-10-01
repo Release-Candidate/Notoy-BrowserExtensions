@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -25,7 +25,10 @@ jobs:
         cache: 'npm'
     - run: npm install -g eslint
     - run: eslint --version
-    - run: eslint */*.js -o eslint.txt
+    - run: |
+        pwd
+        ls */*.js
+        eslint */*.js -o eslint.txt
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
