@@ -1,3 +1,5 @@
 # ![](./images/icon_96.png) Notoy-BrowserExtensions
 
-Browser extensions to save the current page's URL with comments to a markdown file or to the Notoy smartphone app.
+[![ESLint](https://github.com/Release-Candidate/Notoy-BrowserExtensions/actions/workflows/eslint.yml/badge.svg)](https://github.com/Release-Candidate/Notoy-BrowserExtensions/actions/workflows/eslint.yml)
+
+Browser extensions to save the current page's URL with comments to a markdown, org-mode or plain text file.

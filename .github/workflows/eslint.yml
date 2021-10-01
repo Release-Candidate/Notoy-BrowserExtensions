@@ -32,5 +32,5 @@ jobs:
       if: ${{ always() }}
       with:
         name: "ESLint report"
-        # A file, directory or wildcard pattern that describes what to upload
+        if-no-files-found: ignore
         path: eslint.txt
