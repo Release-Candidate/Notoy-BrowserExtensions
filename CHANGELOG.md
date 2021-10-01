@@ -1,6 +1,6 @@
 # Notoy Browser Extensions Changelog
 
-## Version 0.9.1 (2021-10-01)
+## Version 0.9.2 (2021-10-01)
 
 Initial release.
 
