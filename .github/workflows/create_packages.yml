@@ -19,9 +19,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  chrome-package:
+  package:
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [Chrome, Edge, Firefox]
 
     steps:
       - uses: actions/checkout@v2
@@ -32,8 +36,8 @@ jobs:
 
       - name: Zip Package
         run: |
-          cd $GITHUB_WORKSPACE/Chrome
-          zip -r -v notoy-chrome.zip *
+          cd $GITHUB_WORKSPACE/${{ matrix.browser }}
+          zip -r -v notoy-${{ matrix.browser }}-${{ env.GIT_TAG_NAME }}.zip *
 
       - name: Generate Changelog
         run: |
@@ -46,87 +50,87 @@ jobs:
         with:
           name: Version ${{ env.GIT_TAG_NAME }}
           body_path: first_changelog.md
-          files: ./Chrome/notoy-chrome.zip
+          files: ./Chrome/notoy-${{ matrix.browser }}-${{ env.GIT_TAG_NAME }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
-          name: Chrome Package
-          path: ./Chrome/*.zip
+          name: ${{ matrix.browser }} Package
+          path: ./${{ matrix.browser }}/*.zip
 
-  edge-package:
+  # edge-package:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: olegtarasov/get-tag@v2.1
-        id: tagName
-        with:
-          tagRegex: "v(.*)"
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: olegtarasov/get-tag@v2.1
+  #       id: tagName
+  #       with:
+  #         tagRegex: "v(.*)"
 
-      - name: Zip Package
-        run: |
-          cd $GITHUB_WORKSPACE/Edge
-          zip -r -v notoy-edge.zip *
+  #     - name: Zip Package
+  #       run: |
+  #         cd $GITHUB_WORKSPACE/Edge
+  #         zip -r -v notoy-edge-${{ env.GIT_TAG_NAME }}.zip *
 
 
-      - name: Generate Changelog
-        run: |
-          cd $GITHUB_WORKSPACE/scripts
-          ./get_changelog.sh > ../first_changelog.md
+  #     - name: Generate Changelog
+  #       run: |
+  #         cd $GITHUB_WORKSPACE/scripts
+  #         ./get_changelog.sh > ../first_changelog.md
 
-      - name: Release to GitHub
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          name: Version ${{ env.GIT_TAG_NAME }}
-          body_path: first_changelog.md
-          files: ./Edge/notoy-edge.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Release to GitHub
+  #       uses: softprops/action-gh-release@v1
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #       with:
+  #         name: Version ${{ env.GIT_TAG_NAME }}
+  #         body_path: first_changelog.md
+  #         files: ./Edge/notoy-edge-${{ env.GIT_TAG_NAME }}.zip
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-          name: Edge Package
-          path: ./Edge/*.zip
+  #     - uses: actions/upload-artifact@v2
+  #       if: ${{ always() }}
+  #       with:
+  #         name: Edge Package
+  #         path: ./Edge/*.zip
 
-  firefox-package:
+  # firefox-package:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: olegtarasov/get-tag@v2.1
-        id: tagName
-        with:
-          tagRegex: "v(.*)"
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: olegtarasov/get-tag@v2.1
+  #       id: tagName
+  #       with:
+  #         tagRegex: "v(.*)"
 
-      - name: Zip Package
-        run: |
-          cd $GITHUB_WORKSPACE/Firefox
-          zip -r -v notoy-firefox.zip *
+  #     - name: Zip Package
+  #       run: |
+  #         cd $GITHUB_WORKSPACE/Firefox
+  #         zip -r -v notoy-firefox-${{ env.GIT_TAG_NAME }}.zip *
 
-      - name: Generate Changelog
-        run: |
-          cd $GITHUB_WORKSPACE/scripts
-          ./get_changelog.sh > ../first_changelog.md
+  #     - name: Generate Changelog
+  #       run: |
+  #         cd $GITHUB_WORKSPACE/scripts
+  #         ./get_changelog.sh > ../first_changelog.md
 
-      - name: Release to GitHub
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          name: Version ${{ env.GIT_TAG_NAME }}
-          body_path: first_changelog.md
-          files: ./Firefox/notoy-firefox.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Release to GitHub
+  #       uses: softprops/action-gh-release@v1
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #       with:
+  #         name: Version ${{ env.GIT_TAG_NAME }}
+  #         body_path: first_changelog.md
+  #         files: ./Firefox/notoy-firefox-${{ env.GIT_TAG_NAME }}.zip
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-          name: Firefox Package
-          path: ./Firefox/*.zip
+  #     - uses: actions/upload-artifact@v2
+  #       if: ${{ always() }}
+  #       with:
+  #         name: Firefox Package
+  #         path: ./Firefox/*.zip
