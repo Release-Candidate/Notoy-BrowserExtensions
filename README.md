@@ -42,8 +42,7 @@ Supported browsers in alphabetical order:
 
 ## Contributing
 
-I'm mainly searching help translating the extensions to other languages and
-supporting other browsers.
+Most important is help translating the extensions to other languages and supporting other browsers like Safari.
 
 But any help is welcome, file bug reports ([file bug report at GitHub](https://github.com/Release-Candidate/Notoy-BrowserExtensions/issues/new?assignees=&labels=&template=bug_report.md&title=)), issue feature requests ([file feature request](https://github.com/Release-Candidate/Notoy-BrowserExtensions/issues/new?assignees=&labels=&template=feature_request.md&title=)) or fork the repo and create a pull request [documentation at GitHub](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 

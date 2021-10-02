@@ -4,7 +4,7 @@
     "description": "Name der Extension."
   },
   "extensionDescription": {
-    "message": "Konservas ligilon de la aktuala retpaĝo kun sia titolo, etikedoj kaj mallonga kaj detala preskribo kiel Markdown, Org-Mode aŭ texto.",
+    "message": "Konservas ligilon de la aktuala retpaĝo kun sia titolo, etikedojn, mallongan kaj detalan priskribon en Markdown, Org-Mode aŭ texton.",
     "description": "Beschreibung der Extension."
   },
   "browserExtension": {
@@ -12,11 +12,11 @@
     "description": "Übersetzung von 'browser extension'"
   },
   "previewDescription": {
-    "message": "Tiu ĉi estas mallonge preskribo de la enhavo, plej ofte farite per de retpaĝo mem, sed vi povas ŝanĝi ĝin.",
+    "message": "Tiu ĉi estas mallonga priskribo de la enhavo, ofte farita per la retpaĝo mem, sed oni povas ŝanĝi ĝin.",
     "description": "Kurze Beschreibung des Inhaltes des Beispieles auf der 'Optionen'-Seite"
   },
   "previewText": {
-    "message": "Tiu ĉi estas la detala preskribo de la enhavo.\nĈi tie vi povas skribi kion vi volas.",
+    "message": "Jen detala priskribo de la enhavo.\nĈi tien vi povas skribi, kion vi volas.",
     "description": "Ausführliche Beschreibung des Inhaltes des Beispieles auf der 'Optionen'-Seite"
   },
   "keywords": {
@@ -32,11 +32,11 @@
     "description": "Bezeichnung der Auswahl des Formates der Notiz."
   },
   "addCurrentDate": {
-    "message": "Ĉu aldoni nuna dato al la noto?",
+    "message": "Ĉu aldoni hodiaŭan daton al la noto?",
     "description": "Frage, ob das aktuelle Datum zur Notiz hinzugefügt werden soll."
   },
   "addYAMLFrontMatter": {
-    "message": "Ĉu aldoni 'YAML Front Matter' (YAML metadatumoj por Pandoc) al la noto?",
+    "message": "Ĉu aldoni 'YAML Front Matter' (YAML metadatumojn por Pandoc) al la noto?",
     "description": "Frage, ob 'YAML Front Matter' zur Notiz hinzugefügt werden soll."
   },
   "example": {
@@ -44,7 +44,7 @@
     "description": "Die Überschrift des Beispieles auf der 'Optionen'-Seite."
   },
   "saveWebsite": {
-    "message": "Konservu tiu ĉi retpaĝo en noto",
+    "message": "Konservi tiun ĉi retpaĝon en noto",
     "description": "Überschrift des 'Popups'. Beschreibt, was diese Erweiterung macht."
   },
   "title": {
@@ -56,7 +56,7 @@
     "description": "Bezeichnung der URL der Webseite."
   },
   "keywordsCommaSep": {
-    "message": "Etikedoj (partigantaj per komoj):",
+    "message": "Etikedoj (separitaj per komoj):",
     "description": "Bezeichnung für eine Liste von mit Beistrichen getrennten Schlagworten."
   },
   "shortDescription": {
