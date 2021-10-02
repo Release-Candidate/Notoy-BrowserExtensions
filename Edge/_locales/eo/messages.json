@@ -4,7 +4,7 @@
     "description": "Name der Extension."
   },
   "extensionDescription": {
-    "message": "Konservas ligilon de la aktuala retpaĝo kun sia titolo, etikedoj kaj mallonga kaj detala preskribo kiel Markdown, Org-Mode aŭ texto",
+    "message": "Konservas ligilon de la aktuala retpaĝo kun sia titolo, etikedoj kaj mallonga kaj detala preskribo kiel Markdown, Org-Mode aŭ texto.",
     "description": "Beschreibung der Extension."
   },
   "browserExtension": {

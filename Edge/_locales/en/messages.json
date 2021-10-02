@@ -4,7 +4,7 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Saves a link to the current active tab with its title, keywords and a long and short description as a markdown, Org-Mode or text file to disk.",
+    "message": "Saves a link to the current active tab with its title, keywords and a long and short description as markdown, Org-Mode or plain text",
     "description": "Description of the extension."
   },
   "browserExtension": {

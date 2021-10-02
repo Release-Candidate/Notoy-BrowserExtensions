@@ -4,7 +4,7 @@
     "description": "Name der Extension."
   },
   "extensionDescription": {
-    "message": "Speichert einen Link des aktuellen Tabs mit dessen Titel, Schlagworten und einer ausführlichen und einer kurzen Beschreibung als Markdown, Org-Mode oder Text Datei.",
+    "message": "Speichert Link auf das aktuelle Tab mit Titel, Schlagworten, ausführlicher und kurzer Beschreibung als Markdown, Org-Mode oder Text.",
     "description": "Beschreibung der Extension."
   },
   "browserExtension": {
