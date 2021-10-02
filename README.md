@@ -50,7 +50,7 @@ But any help is welcome, file bug reports ([file bug report at GitHub](https://g
 
 ## Further Documentation
 
-Further documentation can be fonud at [Read the Docs](https://notoy-browserextensions.readthedocs.io/en/latest/)
+Further documentation can be found at [Read the Docs](https://notoy-browserextensions.readthedocs.io/en/latest/)
 
 ## License
 

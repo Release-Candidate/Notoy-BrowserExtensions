@@ -1,4 +1,4 @@
-# Notoy Browser Extensions
+# ![](./images/icon_transp_96.png) Notoy Browser Extensions
 
 Information about the [Usage](./usage.md).
 
