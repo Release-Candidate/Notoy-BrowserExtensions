@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (C) 2021 Roland Csaszar
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // Project:  notoy-browser_extensions
 // File:     gulpfile.js
