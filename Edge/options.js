@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2021 Roland Csaszar
 //
-// Project:  notoy-chrome_extensions
+// Project:  notoy-browser_extensions
 // File:     options.js
 // Date:     16.Sep.2021
 //
@@ -9,9 +9,9 @@
 // eslint doesn't know `chrome`
 /* eslint-disable no-undef */
 
-const url = "https://github.com/Release-Candidate/Notoy-chromeExtensions"
-const title = "Release-Candidate/Notoy-chromeExtensions"
-const keywords = `${transName}, ${transchromeExtension}`
+const url = "https://github.com/Release-Candidate/Notoy-BrowserExtensions"
+const title = "Release-Candidate/Notoy-BrowserExtensions"
+const keywords = `${transName}, ${transBrowserExtension}`
 const description = transPreviewDescription
 const text = transPreviewText
 

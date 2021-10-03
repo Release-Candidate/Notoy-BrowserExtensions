@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2021 Roland Csaszar
 //
-// Project:  notoy-chrome_extensions
+// Project:  notoy-browser_extensions
 // File:     formatContent.js
 // Date:     27.Sep.2021
 //
@@ -17,7 +17,7 @@
 
 const transName = chrome.i18n.getMessage("extensionName")
 
-const transchromeExtension = chrome.i18n.getMessage("chromeExtension")
+const transBrowserExtension = chrome.i18n.getMessage("browserExtension")
 
 const transPreviewDescription = chrome.i18n.getMessage("previewDescription")
 
