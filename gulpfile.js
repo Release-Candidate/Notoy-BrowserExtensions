@@ -19,6 +19,54 @@ const del = require("delete")
 // eslint-disable-next-line no-undef
 const zip = require("gulp-zip")
 
+// eslint-disable-next-line no-undef
+const replace = require("gulp-string-replace")
+
+// eslint-disable-next-line no-undef
+const fs = require("fs")
+
+//=============================================================================
+// Replace Version
+
+function scanChangelogVersion() {
+    let version = ""
+    try {
+        const data = fs.readFileSync("./CHANGELOG.md", "utf8")
+        const match = data
+            .toString()
+            .match(/##\s+Version\s+(?<versionMatch>[0-9]+.[0-9]+.[0-9]+)/u)
+        version = match.groups.versionMatch
+    } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err)
+    }
+
+    return version
+}
+
+function replaceVersion(dirName, version) {
+    return src("./" + dirName + "/manifest.json")
+        .pipe(
+            replace(
+                /"version":\s+"[0-9]+.[0-9]+.[0-9]+",/gu,
+                '"version": "' + version + '",'
+            )
+        )
+        .pipe(dest("./" + dirName))
+}
+
+function replaceVersionChrome() {
+    return replaceVersion("Chrome", scanChangelogVersion())
+}
+
+function replaceVersionEdge() {
+    return replaceVersion("Edge", scanChangelogVersion())
+}
+
+function replaceVersionFirefox() {
+    return replaceVersion("Firefox", scanChangelogVersion())
+}
+
 //=============================================================================
 // Copy Directories
 
@@ -42,7 +90,7 @@ function copyTranslations() {
 
 function zipDir(dirName) {
     return src("./" + dirName + "/**/*")
-        .pipe(zip(dirName + ".zip"))
+        .pipe(zip("notoy-" + dirName + ".zip"))
         .pipe(dest("./"))
 }
 
@@ -80,21 +128,21 @@ function delFirefoxDir(dirName, cb) {
 function cleanChrome(cb) {
     delChromeDir("images", cb)
     delChromeDir("_locales", cb)
-    del(["Chrome.zip"], cb)
+    del(["notoy-Chrome.zip"], cb)
     cb()
 }
 
 function cleanEdge(cb) {
     delEdgeDir("images", cb)
     delEdgeDir("_locales", cb)
-    del(["Edge.zip"], cb)
+    del(["notoy-Edge.zip"], cb)
     cb()
 }
 
 function cleanFirefox(cb) {
     delFirefoxDir("images", cb)
     delFirefoxDir("_locales", cb)
-    del(["Firefox.zip"], cb)
+    del(["notoy-Firefox.zip"], cb)
     cb()
 }
 
@@ -105,6 +153,12 @@ exports.clean = parallel(cleanChrome, cleanEdge, cleanFirefox)
 
 // eslint-disable-next-line no-undef
 exports.default = series(
-    parallel(copyImages, copyTranslations),
+    parallel(
+        copyImages,
+        copyTranslations,
+        replaceVersionChrome,
+        replaceVersionEdge,
+        replaceVersionFirefox
+    ),
     parallel(zipChrome, zipEdge, zipFirefox)
 )
