@@ -4,7 +4,7 @@
     "description": "Name der Extension."
   },
   "extensionDescription": {
-    "message": "Speichert einen Link des aktuellen Tabs mit dessen Titel, Schlagworten und einer ausführlichen und einer kurzen Beschreibung als Markdown, Org-Mode oder Text Datei.",
+    "message": "Ukladá link s titulom aktuálnej stránky, klučové slová, krátky popís a podrobý obsah ako Markdown, Org-Mode alebo text.",
     "description": "Beschreibung der Extension."
   },
   "browserExtension": {
@@ -12,43 +12,43 @@
     "description": "Übersetzung von 'browser extension'"
   },
   "previewDescription": {
-    "message": "Das ist eine kurze Beschreibung des Inhaltes, meistens von der Webseite selbst, man kann sie aber anpassen",
+    "message": "Toto je krátky popís obsahu, večšínou už samotná webstrámka ho robú, ale môžé sa prispôsobit.",
     "description": "Kurze Beschreibung des Inhaltes des Beispieles auf der 'Optionen'-Seite"
   },
   "previewText": {
-    "message": "Das ist die ausführliche Beschreibung des Beispiels.\nHier kann geschrieben werden, was auch immer man will.",
+    "message": "Toto je podrobný popís prikladu.\nSem je môžné vpísat všetko, čo chceme.",
     "description": "Ausführliche Beschreibung des Inhaltes des Beispieles auf der 'Optionen'-Seite"
   },
   "keywords": {
-    "message": "Schlagworte:",
+    "message": "Klúčové slová:",
     "description": "Die Mehrzahl des Wortes 'Schlagwort' als Überschrift einer Liste von Schlagworten."
   },
   "notoySettings": {
-    "message": "Notoy možnosti",
+    "message": "Možnosti Notoy",
     "description": "Überschrift der Seite 'Optionen'."
   },
   "fileFormat": {
-    "message": "Format der erstellten Notiz:",
+    "message": "Zvolený formát poznámok:",
     "description": "Bezeichnung der Auswahl des Formates der Notiz."
   },
   "addCurrentDate": {
-    "message": "Aktuelles Datum zur Notiz hinzufügen?",
+    "message": "Je potrebu prídať aktuálny dátum?",
     "description": "Frage, ob das aktuelle Datum zur Notiz hinzugefügt werden soll."
   },
   "addYAMLFrontMatter": {
-    "message": "YAML Front Matter (YAML Metadata für Pandoc) hinzufügen?",
+    "message": "Prídať YAML Front Matter (YAML meta data pre Pandoc)?",
     "description": "Frage, ob 'YAML Front Matter' zur Notiz hinzugefügt werden soll."
   },
   "example": {
-    "message": "Beispiel:",
+    "message": "Priklad:",
     "description": "Die Überschrift des Beispieles auf der 'Optionen'-Seite."
   },
   "saveWebsite": {
-    "message": "Notiz über diese Webseite speichern",
+    "message": "Uložiť poznámku o tejto webstránke",
     "description": "Überschrift des 'Popups'. Beschreibt, was diese Erweiterung macht."
   },
   "title": {
-    "message": "Überschrift:",
+    "message": "Názov:",
     "description": "Bezeichnung der Überschrift der Webseite, die verwendet werden soll."
   },
   "url": {
@@ -56,15 +56,15 @@
     "description": "Bezeichnung der URL der Webseite."
   },
   "keywordsCommaSep": {
-    "message": "Schlagworte (getrennt mit Beistrichen):",
+    "message": "Klučové slova (oddelené čiarkami):",
     "description": "Bezeichnung für eine Liste von mit Beistrichen getrennten Schlagworten."
   },
   "shortDescription": {
-    "message": "Kurze Beschreibung:",
+    "message": "Krátky popís:",
     "description": "Bezeichnung für die kurze Beschreibung des Inhalts."
   },
   "longDescription": {
-    "message": "Ausführliche Beschreibung:",
+    "message": "Podrobný popís:",
     "description": "Bezeichnung für die ausführliche Beschreibung des Inhalts."
   },
   "saveButton": {
