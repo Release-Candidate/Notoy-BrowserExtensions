@@ -12,7 +12,7 @@
     "description": "Übersetzung von 'browser extension'"
   },
   "previewDescription": {
-    "message": "Tiu ĉi estas mallonga priskribo de la enhavo, ofte farita per la retpaĝo mem, sed oni povas ŝanĝi ĝin.",
+    "message": "Tio ĉi estas mallonga priskribo de la enhavo, ofte farita per la retpaĝo mem, sed oni povas ŝanĝi ĝin.",
     "description": "Kurze Beschreibung des Inhaltes des Beispieles auf der 'Optionen'-Seite"
   },
   "previewText": {
@@ -40,7 +40,7 @@
     "description": "Frage, ob 'YAML Front Matter' zur Notiz hinzugefügt werden soll."
   },
   "example": {
-    "message": "Ekzamplo:",
+    "message": "Ekzemplo:",
     "description": "Die Überschrift des Beispieles auf der 'Optionen'-Seite."
   },
   "saveWebsite": {
