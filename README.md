@@ -11,6 +11,10 @@ Supported browsers in alphabetical order:
 ## Table of Contents <!-- omit in toc -->
 
 - [Usage](#usage)
+  - [Screenshots](#screenshots)
+    - [Chrome](#chrome)
+    - [Edge](#edge)
+    - [Firefox](#firefox)
 - [Manually Install Extensions](#manually-install-extensions)
 - [Contributing](#contributing)
 - [Further Documentation](#further-documentation)
@@ -21,6 +25,33 @@ Supported browsers in alphabetical order:
 
 ## Usage
 
+![GIF showing the usage of the Notoy browser extension](./docs/images/video_en_mdn.gif)
+
+### Screenshots
+
+#### Chrome
+
+Popup screen:
+![Screenshot of the extension's popup, running in Chrome](./docs/images/chrome_en.png)
+
+Options Screen:
+![Screenshot of the extension's options page, running in Chrome](./docs/images/chrome_options_en.png)
+
+#### Edge
+
+Popup screen:
+![Screenshot of the extension's popup, running in Edge](./docs/images/edge_en.png)
+
+Options Screen:
+![Screenshot of the extension's options page, running in Edge](./docs/images/edge_options_en.png)
+
+#### Firefox
+
+Popup screen:
+![Screenshot of the extension's popup, running in Firefox](./docs/images/firefox_en.png)
+
+Options Screen:
+![Screenshot of the extension's options page, running in Firefox](./docs/images/firefox_options_en.png)
 
 ## Manually Install Extensions
 

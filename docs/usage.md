@@ -2,6 +2,34 @@
 
 ## Usage
 
+![GIF showing the usage of the Notoy browser extension](./images/video_en_mdn.gif)
+
+### Screenshots
+
+#### Chrome
+
+Popup screen:
+![Screenshot of the extension's popup, running in Chrome](./images/chrome_en.png)
+
+Options Screen:
+![Screenshot of the extension's options page, running in Chrome](./images/chrome_options_en.png)
+
+#### Edge
+
+Popup screen:
+![Screenshot of the extension's popup, running in Edge](./images/edge_en.png)
+
+Options Screen:
+![Screenshot of the extension's options page, running in Edge](./images/edge_options_en.png)
+
+#### Firefox
+
+Popup screen:
+![Screenshot of the extension's popup, running in Firefox](./images/firefox_en.png)
+
+Options Screen:
+![Screenshot of the extension's options page, running in Firefox](./images/firefox_options_en.png)
+
 ## Manually Install Extensions
 
 1. Download the latest release for your browser from GitHub [latest release at GitHub](https://github.com/Release-Candidate/Notoy-BrowserExtensions/releases/latest)
