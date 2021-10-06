@@ -6,10 +6,11 @@ Supported browsers in alphabetical order:
 
 - Chrome
 - Edge
-- Firefox
+- Firefox: [Notoy at Firefox Add-ons](https://addons.mozilla.org/addon/roland-csaszar)
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Installation](#installation)
 - [Usage](#usage)
   - [Screenshots](#screenshots)
     - [Chrome](#chrome)
@@ -23,9 +24,19 @@ Supported browsers in alphabetical order:
 [![ESLint](https://github.com/Release-Candidate/Notoy-BrowserExtensions/actions/workflows/eslint.yml/badge.svg)](https://github.com/Release-Candidate/Notoy-BrowserExtensions/actions/workflows/eslint.yml)
 [![Documentation Status](https://readthedocs.org/projects/notoy-browserextensions/badge/?version=latest)](https://notoy-browserextensions.readthedocs.io/en/latest/?badge=latest)
 
+## Installation
+
+Go to the extension website of your browser and download `Notoy`
+
+- Firefox: [Notoy at Firefox Add-ons](https://addons.mozilla.org/addon/roland-csaszar)
+
+or install from GitHub: [manually install extension](#manually-install-extensions)
+
 ## Usage
 
 ![GIF showing the usage of the Notoy browser extension](./docs/images/video_en_mdn.gif)
+
+There is also a video on YouTube: [Notoy usage on YouTube](https://www.youtube.com/watch?v=8UxsE7TW_Tc)
 
 ### Screenshots
 

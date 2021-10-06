@@ -1,8 +1,18 @@
 # Installation & Usage
 
+## Installation
+
+Go to the extension website of your browser and download `Notoy`
+
+- Firefox: [Notoy at Firefox Add-ons](https://addons.mozilla.org/addon/roland-csaszar)
+
+or install from GitHub: [manually install extension](#manually-install-extensions)
+
 ## Usage
 
 ![GIF showing the usage of the Notoy browser extension](./images/video_en_mdn.gif)
+
+There is also a video on YouTube: [Notoy usage on YouTube](https://www.youtube.com/watch?v=8UxsE7TW_Tc)
 
 ### Screenshots
 
