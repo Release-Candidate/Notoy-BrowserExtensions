@@ -4,6 +4,8 @@
 
 Go to the extension website of your browser and download `Notoy`
 
+- Chrome: [Notoy at Chrome Web Store](https://chrome.google.com/webstore/detail/notoy/ejmcdafpeijhmmmfebmdpcmgaaoaminc)
+- Edge: [Notoy at Edge Add-Ons](https://microsoftedge.microsoft.com/addons/detail/notoy/nnocnobndadkcpggkegckgcnehmnohbl)
 - Firefox: [Notoy at Firefox Add-ons](https://addons.mozilla.org/addon/roland-csaszar)
 
 or install from GitHub: [manually install extension](#manually-install-extensions)
