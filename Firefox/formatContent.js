@@ -11,6 +11,8 @@
 /* eslint-disable no-undef */
 // Most names are not locally used.
 /* eslint-disable no-unused-vars */
+// Eslint and Prettier disagree on formatting
+/* eslint-disable indent */
 
 //=============================================================================
 // Translation constants
@@ -51,7 +53,7 @@ function getMarkdown({
 } = {}) {
     return `${getYamlFrontMatter({ title, keywords, addYaml })}# ${title}
 
-${getTimestamp(addTimestamp)}${transKeywords} ${tagifyKeywords(keywords)}
+${getTimestamp({ addTimestamp })}${transKeywords} ${tagifyKeywords(keywords)}
 
 ${description}
 [${title}](${url})
@@ -78,9 +80,13 @@ function getOrgMode({
 #+date:   ${getDateString()}
 #+FILETAGS: ${orgifyKeywords(keywords)}
 
-* ${title}
+* ${title}\t\t${orgifyKeywords(keywords)}
 
-${getTimestamp(addTimestamp)}${transKeywords} ${keywords}
+${getTimestamp({
+    addTimestamp,
+    start: "<",
+    end: ">",
+})}${transKeywords} ${keywords}
 
 ${description}
 [[${url}][${title}]]
@@ -106,7 +112,7 @@ function getPlainText({
 } = {}) {
     return `${getYamlFrontMatter({ title, keywords, addYaml })}${title}
 
-${getTimestamp(addTimestamp)}${transKeywords} ${keywords}
+${getTimestamp({ addTimestamp })}${transKeywords} ${keywords}
 
 ${description}
 ${url}
@@ -168,6 +174,7 @@ title: "${title}"
 author:
   -
 keywords: ${getKeywordsYAML(keywords)}
+tags: ${getKeywordsYAML(keywords)}
 lang: ${browser.i18n.getUILanguage()}
 ---`
     return addYaml ? yamlString + "\n\n" : ""
@@ -178,11 +185,13 @@ lang: ${browser.i18n.getUILanguage()}
  *
  * @param {*} addTimestamp If this is `true`, a date string is returned, else
  * the empty string.
+ * @param {*} start The string to add before the date string
+ * @param {*} end The string to add after the date string
  * @returns The current date as string, if `addTimestamp` is `true`, the empty
  * string ("") else.
  */
-function getTimestamp(addTimestamp) {
-    return addTimestamp ? getDateString() + "\n\n" : ""
+function getTimestamp({ addTimestamp, start = "", end = "" }) {
+    return addTimestamp ? start + getDateString() + end + "\n\n" : ""
 }
 
 /**
