@@ -52,6 +52,9 @@ document.querySelectorAll("[data-locale]").forEach((elem) => {
     elem.innerText = chrome.i18n.getMessage(elem.dataset.locale)
 })
 
+const langShort = chrome.i18n.getMessage("languageName")
+document.documentElement.lang = langShort
+
 // Title input field in the extension's popup.
 let titleText = document.getElementById("titleText")
 titleText.addEventListener("input", async () => {

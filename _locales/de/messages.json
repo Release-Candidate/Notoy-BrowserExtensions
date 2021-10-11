@@ -1,4 +1,8 @@
 {
+  "languageName": {
+    "message": "de",
+    "description": "Kürzel der Sprache"
+  },
   "extensionName": {
     "message": "Notoy",
     "description": "Name der Extension."

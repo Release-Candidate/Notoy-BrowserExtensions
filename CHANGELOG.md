@@ -1,5 +1,10 @@
 # Notoy Browser Extensions Changelog
 
+## Version 1.0.2 (2021-10-11)
+
+- set language in popup and option HTML
+- Firefox: set width of popup window to 800px
+
 ## Version 1.0.1 (2021-10-08)
 
 - correct formatting of the date in Org-Mode (with angle brackets, like `<2021-10-08>`)

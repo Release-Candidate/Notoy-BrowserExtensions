@@ -23,6 +23,9 @@ document.querySelectorAll("[data-locale]").forEach((elem) => {
     elem.innerText = chrome.i18n.getMessage(elem.dataset.locale)
 })
 
+const langShort = chrome.i18n.getMessage("languageName")
+document.documentElement.lang = langShort
+
 chrome.storage.sync.get("optionFormat", ({ optionFormat }) => {
     previewFormat = optionFormat
     let markdownCheck = document.getElementById("markdown")
