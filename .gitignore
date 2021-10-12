@@ -7,3 +7,4 @@ Pipfile.lock
 /Edge/images
 /Firefox/_locales
 /Firefox/images
+.log/
