@@ -8,3 +8,6 @@ Pipfile.lock
 /Firefox/_locales
 /Firefox/images
 .log/
+
+\#*
+.\#*
